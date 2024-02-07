@@ -48,14 +48,16 @@ body {
   /* EVENTBLOCK */
 
 .eventblock {
-    min-height: 211px;
+    min-height: 150px;
 }
-  
+
+
   /* KEY IMAGE */
 
 .keyimage {
   display: none;
-  max-height: 211px;
+  max-height: 120px;
+  max-width: 75%;
 }
 
 .show-image {
