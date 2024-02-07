@@ -1,0 +1,64 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 80px 10px 10px 10px;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: Georgia, serif;
+}
+
+.bar {
+  position: sticky;
+  top: 80px;
+  z-index: 999;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 10px;
+  }
+  
+  .header-img {
+    max-height: 40px;
+  }
+  
+  .header-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header-buttons div {
+    margin-bottom: 5px;
+  }
+  
+  .btn-arrow {
+    background-color: white;
+    border: 1px solid black;
+    width: 10px; /* Adjust size as needed */
+    height: 30px; /* Adjust size as needed */
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* EVENTBLOCK */
+
+.eventblock {
+    min-height: 211px;
+}
+  
+  /* KEY IMAGE */
+
+.keyimage {
+  display: none;
+  max-height: 211px;
+}
+
+.show-image {
+  display: block;
+}
+
