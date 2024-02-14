@@ -1,26 +1,18 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Select all event titles
     const eventTitles = document.querySelectorAll('.event-title');
 
-    // Loop through each event title
     eventTitles.forEach(function(title) {
-        // Add event listener for mouseenter (hover over)
         title.addEventListener('mouseenter', function() {
-            // Find the parent container of the event title
             const eventblockContainer = title.closest('.eventblock');
-
-            // Add a class to make the text red
             if (eventblockContainer) {
                 eventblockContainer.classList.add('red-text');
             }
 
-            // Show the corresponding hidden image
             const image = eventblockContainer.querySelector('.keyimage');
             if (image) {
                 image.classList.add('show-image');
             }
 
-            // Blur all other event blocks
             eventTitles.forEach(function(otherTitle) {
                 if (otherTitle !== title) {
                     const otherEventblockContainer = otherTitle.closest('.eventblock');
@@ -31,23 +23,17 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
 
-        // Add event listener for mouseleave (hover off)
         title.addEventListener('mouseleave', function() {
-            // Find the parent container of the event title
             const eventblockContainer = title.closest('.eventblock');
-
-            // Remove the class to revert back to the original color
             if (eventblockContainer) {
                 eventblockContainer.classList.remove('red-text');
             }
 
-            // Hide the image
             const image = eventblockContainer.querySelector('.keyimage');
             if (image) {
                 image.classList.remove('show-image');
             }
 
-            // Remove the blur effect from all other event blocks
             eventTitles.forEach(function(otherTitle) {
                 if (otherTitle !== title) {
                     const otherEventblockContainer = otherTitle.closest('.eventblock');
@@ -59,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // A propos
     function toggleInfo() {
         var info = document.getElementById('info');
         var button = document.getElementById('toggleButton');
@@ -72,6 +57,18 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Add event listener to the "à propos" button
     document.getElementById('toggleButton').addEventListener('click', toggleInfo);
+
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', event => {
+            event.preventDefault();
+            const targetId = item.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                let offset = window.innerWidth >= 768 ? 280 : 80; // Offset for desktop and mobile
+                const scrollPosition = targetElement.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+            }
+        });
+    });
 });
