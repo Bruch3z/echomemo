@@ -1,74 +1,64 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const eventTitles = document.querySelectorAll('.event-title');
+    const eventBlocks = document.querySelectorAll('.eventblock');
 
-    eventTitles.forEach(function(title) {
-        title.addEventListener('mouseenter', function() {
-            const eventblockContainer = title.closest('.eventblock');
-            if (eventblockContainer) {
-                eventblockContainer.classList.add('red-text');
-            }
+    let visibleImage = null; // Track the currently visible image
 
-            const image = eventblockContainer.querySelector('.keyimage');
+    eventBlocks.forEach(function(eventBlock) {
+        eventBlock.addEventListener('mouseenter', function() {
+            eventBlock.classList.add('red-text');
+
+            const image = eventBlock.querySelector('.keyimage');
             if (image) {
+                // Hide the previously visible image
+                if (visibleImage && visibleImage !== image) {
+                    visibleImage.classList.remove('show-image');
+                }
+                visibleImage = image;
+
                 image.classList.add('show-image');
             }
-
-            eventTitles.forEach(function(otherTitle) {
-                if (otherTitle !== title) {
-                    const otherEventblockContainer = otherTitle.closest('.eventblock');
-                    if (otherEventblockContainer) {
-                        otherEventblockContainer.classList.add('blur');
-                    }
-                }
-            });
         });
 
-        title.addEventListener('mouseleave', function() {
-            const eventblockContainer = title.closest('.eventblock');
-            if (eventblockContainer) {
-                eventblockContainer.classList.remove('red-text');
-            }
+        eventBlock.addEventListener('mouseleave', function() {
+            eventBlock.classList.remove('red-text');
 
-            const image = eventblockContainer.querySelector('.keyimage');
+            const image = eventBlock.querySelector('.keyimage');
             if (image) {
                 image.classList.remove('show-image');
             }
+        });
 
-            eventTitles.forEach(function(otherTitle) {
-                if (otherTitle !== title) {
-                    const otherEventblockContainer = otherTitle.closest('.eventblock');
-                    if (otherEventblockContainer) {
-                        otherEventblockContainer.classList.remove('blur');
-                    }
-                }
-            });
+        eventBlock.addEventListener('mouseover', function() {
+            eventBlock.classList.add('eventblock-hover');
+        });
+
+        eventBlock.addEventListener('mouseout', function() {
+            eventBlock.classList.remove('eventblock-hover');
         });
     });
 
-    function toggleInfo() {
-        var info = document.getElementById('info');
-        var button = document.getElementById('toggleButton');
-        if (info.style.display === 'none') {
-            info.style.display = 'block';
-            button.innerHTML = '<h3> fermer </h3>';
-        } else {
-            info.style.display = 'none';
-            button.innerHTML = '<h3> à propos </h3>';
-        }
-    }
+    // Scroll event to reveal images
+    window.addEventListener('scroll', function() {
+        eventBlocks.forEach(function(eventBlock) {
+            const image = eventBlock.querySelector('.keyimage');
+            if (image) {
+                const rect = eventBlock.getBoundingClientRect();
+                const threshold = 290; // Distance from the top of the page
+                if (rect.top <= threshold) {
+                    if (!image.classList.contains('show-image')) {
+                        // Hide the previously visible image
+                        if (visibleImage && visibleImage !== image) {
+                            visibleImage.classList.remove('show-image');
+                        }
+                        visibleImage = image;
 
-    document.getElementById('toggleButton').addEventListener('click', toggleInfo);
-
-    document.querySelectorAll('.dropdown-item').forEach(item => {
-        item.addEventListener('click', event => {
-            event.preventDefault();
-            const targetId = item.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                let offset = window.innerWidth >= 768 ? 280 : 80; // Offset for desktop and mobile
-                const scrollPosition = targetElement.getBoundingClientRect().top + window.scrollY - offset;
-                window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+                        image.classList.add('show-image');
+                    }
+                } else {
+                    image.classList.remove('show-image');
+                }
             }
         });
     });
+
 });
