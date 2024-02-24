@@ -26,7 +26,7 @@
             <div class="col-12">
                 <h6 class="header-title">écho mémo</h6>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-3">
                 <button id="toggleButton" onclick="toggleInfo()"><h3>à propos</h3></button>
                 <p id="info" style="display: none;">Explorez la riche histoire de la commune de Bagnes de 1900 à 1999 à travers une chronologie captivante des événements. Créé par Sam Bruchez, ce projet offre un aperçu complet du passé, mettant en lumière les moments clés et les histoires qui ont façonné la commune au cours du XXe siècle.</p>
             </div>
@@ -37,6 +37,7 @@
         <button class="btn btn-custom dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Année
         </button>
+        <span id="dateText"></span> <!-- This is the new element for the date -->
         <div class="dropdown-menu">
           <!--  <a class="dropdown-item dropdown-item-custom" href="#1999">1999</a>
             <a class="dropdown-item dropdown-item-custom" href="#1990">1990</a>
@@ -82,10 +83,8 @@
 -->
     <!-- 1970 -->
     <div class="row" id="1970">
-        <div class="col-4 text-md-right text-left">
+        <div class="col-12 col-md-5 offset-md-3">
             <h2>1970</h2>
-        </div>
-        <div class="col-12 col-md-8">
             <hr style="border-top: 3px double;">
         </div>
     </div>
@@ -94,76 +93,66 @@
     <!-- 1963 -->
     <!-- janvier -->
     <!-- 02 --> 
-    <div class="row eventblock">
+    <div class="row eventblock" id="event-1963">
         <!-- DATE -->
-        <div class="col-12 col-md-4">
-            <div class="row align-items-start">
-                <div class="col-12 text-md-right text-sm-left"><h3>02 jnvier 1963</h3></div>
-                <div class="col-12"><img src="images/19630102_NVE_0007.jpg" alt="Image" class="keyimage"></div>
-            </div>
-        </div>
         <!-- EVENT -->
-        <div class="col-12 col-md-8 reference">
+        <div class="col-12 col-md-5 offset-md-3 reference">
             <div class="row">
                 <!-- Reference -->
-                <div class="col-6"><h3>Bruson</h3></div>
-                <div class="col-6 text-right"><h3>#NVE_0007</h3></div>
+                <div class="col-4"><h3>02 janvier 1963</h3></div>
+                <div class="col-4 text-center"><h3>Bruson</h3></div>
+                <div class="col-4 text-right"><h3>#NVE_0007</h3></div>
             </div>
             <!-- Event -->
-            <div class="row justify-content-end event">
-                <div class="col-12">
+            <div class="row  event">
+                <div class="col-7 col-md-12">
                     <h1 class="event-title">Téléskis de la Cot et la Pasay</h1>
                     <p>Installations satellites pour promouvoir le tourisme hivernal dans une région jusqu'alors peu connue. Ces installations comprennent deux télésièges, deux téléskis et l'école de ski, situés sous le nouveau restaurant de La Cot. Ce dernier offre une salle à manger de 60 places, un bar, des dortoirs pour 28 personnes avec eau courante, chauffage, WC, et grandes terrasses. Le débit horaire total des remontées est de 2100 personnes.</p>
                 </div>
+                <div class="col-12"><img src="images/19630102_NVE_0007.jpg" alt="Image" class="keyimage"></div>
             </div>
         </div>
     </div>
     
     <!-- 1960 -->
     <div class="row" id="1960">
-        <div class="col-4 text-md-right text-left">
+        <div class="col-12 col-md- offset-md-4">
             <h2>1960</h2>
-        </div>
-        <div class="col-12 col-md-8">
             <hr style="border-top: 3px double;">
         </div>
     </div>
     <!-- 1960 -->
 
-  
-    
+
     <!-- 1953 -->
     <!-- août -->
     <!-- 12 --> 
-    <div class="row eventblock">
+    <div class="row eventblock" id="event-1953">
         <!-- DATE -->
-        <div class="col-12 col-md-4">
-            <div class="row align-items-start">
-                <div class="col-12 text-md-right text-sm-left"><h3>26 janvier 1955</h3></div>
-                <div class="col-12"><img src="images/19550126_LCE_0002.jpg" alt="Image" class="keyimage"></div>
-            </div>
-        </div>
         <!-- EVENT -->
-        <div class="col-12 col-md-8 reference">
+        <div class="col-12 col-md-8 offset-md-4 reference">
             <div class="row">
                 <!-- Reference -->
-                <div class="col-6"><h3>Verbier</h3></div>
-                <div class="col-6 text-right"><h3>#LCE_0002</h3></div>
+                <div class="col-4"><h3>12 août 1953</h3></div>
+                <div class="col-4 text-center"><h3>Verbier</h3></div>
+                <div class="col-4 text-right"><h3>#LCE_0002</h3></div>
             </div>
             <!-- Event -->
             <div class="row justify-content-end event">
                 <div class="col-12">
                     <h1 class="event-title">Téléski Ransoux-Proz Borzay</h1>
                     <p>Le téléski du Rouge, anciennement connu sous le nom de Ransoux - Proz Borzay, est le dernier téléski débrayable de Verbier. Il a été mis en service au tout début de la saison 1954-1955 et était considéré comme une extension des deux premiers téléskis qui partaient de plus bas dans la station.</p>
-                     <hr>
                 </div>
+                <div class="col-12"><img src="images/19550126_LCE_0002.jpg" alt="Image" class="keyimage"></div>
             </div>
         </div>
     </div>
+    
+    
     <!-- 1953 -->
     <!-- août -->
     <!-- 12 --> 
-    <div class="row eventblock">
+    <div class="row eventblock" id="event-1953">
         <!-- DATE -->
         <div class="col-12 col-md-4">
             <div class="row align-items-start">
@@ -191,7 +180,7 @@
     <!-- 1951 -->
     <!-- janvier -->
     <!-- 05 --> 
-    <div class="row eventblock">
+    <div class="row eventblock" id="event-1951">
         <!-- DATE -->
         <div class="col-12 col-md-4">
             <div class="row align-items-start">
@@ -273,7 +262,7 @@
     <!-- 1908 -->
     <!-- mars -->
     <!-- 14 -->
-    <div class="row eventblock">
+    <div class="row eventblock" id="event-1908">
         <!-- DATE -->
         <div class="col-4">
             <div class="row align-items-start">

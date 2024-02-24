@@ -8,7 +8,6 @@ body {
   overflow-x: hidden;
   font-family: Georgia, serif;
   cursor: default;
-  max-width: 900px;
 }
 
 #toggleButton,
@@ -21,10 +20,10 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 999;
+    z-index: 997;
     padding: 10px;
     min-height: 280px;
-    background-color: #ffff;
+    background-color: none;
   }
 
 .header-title {
@@ -113,11 +112,21 @@ hr {
   transition: filter 0.3s ease;
 }
 
-.event-title:hover {
-  color: grey;
+#info {
+  display: none;
+  background-color: white;
+  padding: 10px;
 }
 
-.eventblock.red-text {
+
+#dateText {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin-left: 10px; /* Add spacing between the button and the text */
+}
+
+.eventblock.visible {
   color: grey;
 }
 
@@ -126,7 +135,9 @@ hr {
   position: fixed;
   top: 270px; 
   left: 10px;
-  z-index: 995;
+  z-index: 998;
+  background-color: white;
+
 }
 
 .dropdown {
@@ -158,20 +169,20 @@ hr {
   border-radius: 0px;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   body {
     margin: 100px 10px 10px 10px;
   }
 
   .header {
       min-height: 80px;
+      background-color: white;
   }
 
   .keyimage {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 9999; /* Ensure the image is on top of the blurred content */
 }
 
 /* Hide the key image when it's not supposed to be visible */
@@ -184,7 +195,7 @@ hr {
   position: fixed;
   top: 90px; 
   left: 10px;
-  z-index: 995;
 }
 
 }
+
