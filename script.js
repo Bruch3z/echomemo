@@ -83,4 +83,21 @@ document.addEventListener("DOMContentLoaded", function() {
             aproposButton.querySelector('h3').textContent = 'à propos';
         }
     });
+
+    // Add mobile-specific code here
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (isMobile) {
+        eventBlocks.forEach(function(eventBlock) {
+            const image = eventBlock.querySelector('.keyimage');
+            if (image) {
+                image.addEventListener('click', function() {
+                    if (image.classList.contains('show-image')) {
+                        image.classList.remove('show-image');
+                    } else {
+                        image.classList.add('show-image');
+                    }
+                });
+            }
+        });
+    }
 });

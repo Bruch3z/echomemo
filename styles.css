@@ -15,21 +15,19 @@ body {
   cursor: pointer;
 }
 
-
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 997;
-    padding: 10px;
-    min-height: 280px;
-    background-color: none;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 997;
+  padding: 10px;
+  min-height: 280px;
+  background-color: none;
+}
 
 .header-title {
-    margin: 0px;
-  }
-
+  margin: 0px;
+}
 
 h1 {
   font-size: 32px;
@@ -51,43 +49,37 @@ h6 {
   font-size: 44px;
   letter-spacing: -0.1rem;
 }
- 
+
 p {
   font-size: 13px;
   letter-spacing: -0.01rem;
   line-height: 1.1;
 }
 
-
-  
-  /* KEY IMAGE */
-  /* hover */
-
+/* KEY IMAGE */
 .keyimage {
   display: none;
   max-height: 260px;
-  max-width: 325px; 
+  max-width: 325px;
   position: fixed;
   top: 10px;
-  right: 10px; 
+  right: 10px;
   z-index: 999;
-  }
+}
 
-  .articleimg {
-    width: 100%;
-    height: auto;
-  }
+.articleimg {
+  width: 100%;
+  height: auto;
+}
 
 .show-image {
   display: block;
 }
 
-
 hr {
   border: none;
   border-top: 1px solid #000;
 }
-
 
 /* A propos */
 
@@ -118,7 +110,6 @@ hr {
   padding: 10px;
 }
 
-
 #dateText {
   font-size: 10px;
   text-transform: uppercase;
@@ -133,11 +124,10 @@ hr {
 /* dropdown */
 .fixed-dropdown {
   position: fixed;
-  top: 270px; 
+  top: 270px;
   left: 10px;
   z-index: 998;
   background-color: white;
-
 }
 
 .dropdown {
@@ -175,27 +165,25 @@ hr {
   }
 
   .header {
-      min-height: 80px;
-      background-color: white;
+    min-height: 80px;
+    background-color: white;
   }
 
   .keyimage {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
+  }
 
-/* Hide the key image when it's not supposed to be visible */
-.keyimage:not(.show-image) {
+  /* Hide the key image when it's not supposed to be visible */
+  .keyimage:not(.show-image) {
     display: none;
-}
+  }
 
-/* dropdown */
-.fixed-dropdown {
-  position: fixed;
-  top: 90px; 
-  left: 10px;
+  /* dropdown */
+  .fixed-dropdown {
+    position: fixed;
+    top: 90px;
+    left: 10px;
+  }
 }
-
-}
-
