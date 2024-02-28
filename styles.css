@@ -29,6 +29,8 @@ body {
   margin: 0px;
 }
 
+
+
 h1 {
   font-size: 32px;
   letter-spacing: -0.08rem;
@@ -56,6 +58,16 @@ p {
   line-height: 1.1;
 }
 
+ /* EVENT BLOCK */
+.eventblock {
+  color: #B9BBB6;
+}
+
+.eventblock-active {
+  color: black;
+}
+
+
 /* KEY IMAGE */
 .keyimage {
   display: none;
@@ -76,11 +88,6 @@ p {
   display: block;
 }
 
-hr {
-  border: none;
-  border-top: 1px solid #000;
-}
-
 /* A propos */
 
 #toggleButton {
@@ -91,35 +98,31 @@ hr {
   cursor: pointer;
   text-decoration: none;
   transition: filter 0.2s ease;
+  padding: 0;
 }
 
 #toggleButton:hover {
-  filter: blur(0.75px);
-  opacity: 75%;
+  color: #B9BBB6;
 }
 
-.blur {
-  filter: blur(1px);
-  opacity: 95%;
-  transition: filter 0.3s ease;
-}
 
 #info {
   display: none;
   background-color: white;
-  padding: 10px;
+  padding: 10px 0 0 0;
 }
 
 #dateText {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
-  margin-left: 10px; /* Add spacing between the button and the text */
+  margin-left: 10px;
 }
 
-.eventblock.visible {
-  color: grey;
+#dateText:hover {
+  color: #B9BBB6;
 }
+
 
 /* dropdown */
 .fixed-dropdown {
@@ -136,9 +139,8 @@ hr {
 
 .btn-custom {
   background-color: white;
-  border: 1px solid #000;
   color: #000;
-  font-size: 10px;
+  font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   border-radius: 0px;
@@ -146,6 +148,10 @@ hr {
 
 .btn-custom:focus {
   box-shadow: none;
+}
+
+.btn-custom:hover {
+  color: #B9BBB6;
 }
 
 .dropdown-item-custom {
@@ -157,6 +163,17 @@ hr {
 .dropdown-menu {
   border: 1px solid rgb(255, 255, 255);
   border-radius: 0px;
+}
+
+
+.dropdown-item-custom:hover {
+  background-color: #ffffff00;
+  color: #B9BBB6;
+}
+
+.dropdown-item-custom:active {
+  background-color: #ffffff00;
+  color: #B9BBB6;
 }
 
 @media (max-width: 768px) {
