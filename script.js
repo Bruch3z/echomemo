@@ -1,3 +1,4 @@
+// JavaScript code to handle the key image behavior on mobile
 document.addEventListener("DOMContentLoaded", function() {
     const eventBlocks = document.querySelectorAll('.eventblock');
     let visibleImage = null; // Track the currently visible image
@@ -26,7 +27,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         eventBlocks.forEach(function(eventBlock) {
             const rect = eventBlock.getBoundingClientRect();
-            const threshold = 290; // Distance from the top of the page
+            let threshold = 290; // Distance from the top of the page
+            if (window.innerWidth <= 768) {
+                threshold = window.innerHeight / 2; // Middle of the screen on mobile
+            }
             if (rect.top <= threshold && rect.bottom >= threshold) {
                 visibleEventBlock = eventBlock;
             }
@@ -60,7 +64,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const image = eventBlock.querySelector('.keyimage');
             if (image) {
                 const rect = eventBlock.getBoundingClientRect();
-                const threshold = 290; // Distance from the top of the page
+                let threshold = 290; // Distance from the top of the page
+                if (window.innerWidth <= 768) {
+                    threshold = window.innerHeight / 2; // Middle of the screen on mobile
+                }
                 if (rect.top <= threshold) {
                     if (!image.classList.contains('show-image')) {
                         if (visibleImage && visibleImage !== image) {
@@ -130,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
         eventBlocks.forEach(function(eventBlock) {
             const image = eventBlock.querySelector('.keyimage');
             if (image) {
-                image.addEventListener('click', function() {
+                eventBlock.addEventListener('click', function() {
                     if (image.classList.contains('show-image')) {
                         image.classList.remove('show-image');
                     } else {
