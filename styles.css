@@ -183,60 +183,62 @@ p {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(204, 23, 23);
+  background-color: rgb(255, 255, 255);
   z-index: 2;
 }
 
+
 @media (max-width: 768px) {
   body {
-      margin: 90% 10px 10px 10px;
+    margin: 90% 10px 10px 10px;
   }
 
   .header {
-      min-height: 80px;
-      background-color: white;
+    min-height: 80px;
+    background-color: white;
   }
 
   .keyimage {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   /* Hide the key image when it's not supposed to be visible */
   .keyimage:not(.show-image) {
-      display: none;
+    display: none;
   }
 
   .fixed-dropdown {
-      position: fixed;
-      top: 90px;
-      left: 10px;
-      width: 100vw;
+    position: fixed;
+    top: 90px;
+    left: 10px;
+    width: 100vw;
   }
 
   .dropdown-menu {
-      margin-top: 0;
+    margin-top: 0;
   }
 
   .btn-custom {
-      padding-left: 0;
+    padding-left: 0;
   }
 
   /* Show the white overlay on mobile and hide the text content */
   .eventblock {
-      position: relative;
+    position: relative;
   }
 
   .eventblock:hover .content {
-      display: block;
+    display: block;
   }
 
   .eventblock:hover .keyimage {
-      display: none;
+    display: none;
   }
 
   .eventblock:hover .white-overlay {
-      display: block;
+    display: block;
   }
 }
+
