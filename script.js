@@ -50,6 +50,15 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             activeEventBlock = visibleEventBlock;
             activeEventBlock.classList.add('eventblock-active');
+
+            // Show the white overlay if key image is active and on mobile
+            const image = activeEventBlock.querySelector('.keyimage');
+            const whiteOverlay = activeEventBlock.querySelector('.white-overlay');
+            if (image && image.classList.contains('show-image') && window.innerWidth <= 768) {
+                whiteOverlay.style.display = 'block';
+            } else {
+                whiteOverlay.style.display = 'none';
+            }
         } else {
             document.getElementById('dateText').textContent = '';
 
