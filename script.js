@@ -146,6 +146,23 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             }
         });
+
+        // Hide the key image and white overlay initially
+        document.querySelectorAll('.keyimage, .white-overlay').forEach(function(elem) {
+            elem.style.display = 'none';
+        });
+
+        // Show the key image and white overlay on tap
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.eventblock')) {
+                const keyImage = e.target.closest('.eventblock').querySelector('.keyimage');
+                const whiteOverlay = e.target.closest('.eventblock').querySelector('.white-overlay');
+                if (keyImage && whiteOverlay) {
+                    keyImage.style.display = 'block';
+                    whiteOverlay.style.display = 'block';
+                }
+            }
+        });
     }
 
     // Open dropdown menu on span click
