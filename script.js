@@ -134,48 +134,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Add mobile-specific code here
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     if (isMobile) {
-        // Hide key image and white overlay initially
-        document.querySelectorAll('.keyimage').forEach(function(image) {
-            image.style.display = 'none';
-        });
-        document.querySelectorAll('.white-overlay').forEach(function(overlay) {
-            overlay.style.display = 'none';
-        });
-
-        // Hide image and white overlay when tapped
-        document.body.addEventListener('click', function(event) {
-            if (!event.target.closest('.keyimage') && !event.target.closest('.white-overlay')) {
-                document.querySelectorAll('.keyimage').forEach(function(image) {
-                    image.style.display = 'none';
-                });
-                document.querySelectorAll('.white-overlay').forEach(function(overlay) {
-                    overlay.style.display = 'none';
-                });
-            }
-        });
-
-        // Change image on vertical scroll
-        window.addEventListener('scroll', function() {
-            if (document.body.classList.contains('show-image')) {
-                eventBlocks.forEach(function(eventBlock) {
-                    const image = eventBlock.querySelector('.keyimage');
-                    if (image) {
-                        const rect = eventBlock.getBoundingClientRect();
-                        let threshold = 290; // Distance from the top of the page
-                        if (window.innerWidth <= 768) {
-                            threshold = window.innerHeight / 2; // Middle of the screen on mobile
-                        }
-                        if (rect.top <= threshold) {
-                            if (!image.classList.contains('show-image')) {
-                                document.querySelectorAll('.keyimage').forEach(function(img) {
-                                    img.style.display = 'none';
-                                });
-                                visibleImage = image;
-                                image.style.display = 'block';
-                            }
-                        } else {
-                            image.style.display = 'none';
-                        }
+        eventBlocks.forEach(function(eventBlock) {
+            const image = eventBlock.querySelector('.keyimage');
+            if (image) {
+                eventBlock.addEventListener('click', function() {
+                    if (image.classList.contains('show-image')) {
+                        image.classList.remove('show-image');
+                    } else {
+                        image.classList.add('show-image');
                     }
                 });
             }
