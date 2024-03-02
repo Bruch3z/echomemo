@@ -134,17 +134,37 @@ document.addEventListener("DOMContentLoaded", function() {
     // Add mobile-specific code here
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     if (isMobile) {
-        // Show image and white overlay when tapping an event block
-        eventBlocks.forEach(function(eventBlock) {
-            eventBlock.addEventListener('click', function(event) {
-                const image = eventBlock.querySelector('.keyimage');
-                const overlay = eventBlock.querySelector('.white-overlay');
-                if (image && overlay) {
-                    image.style.display = 'block';
-                    overlay.style.display = 'block';
-                }
-            });
+        // Hide key image and white overlay initially
+        document.querySelectorAll('.keyimage').forEach(function(image) {
+            image.style.display = 'none';
         });
+        document.querySelectorAll('.white-overlay').forEach(function(overlay) {
+            overlay.style.display = 'none';
+        });
+
+// Hide image and white overlay when tapped outside
+document.body.addEventListener('click', function(event) {
+    if (!event.target.closest('.keyimage') && !event.target.closest('.white-overlay')) {
+        document.querySelectorAll('.keyimage').forEach(function(image) {
+            image.style.display = 'none';
+        });
+        document.querySelectorAll('.white-overlay').forEach(function(overlay) {
+            overlay.style.display = 'none';
+        });
+    }
+});
+
+// Show image and white overlay when tapping an event block
+eventBlocks.forEach(function(eventBlock) {
+    eventBlock.addEventListener('click', function(event) {
+        const image = eventBlock.querySelector('.keyimage');
+        const overlay = eventBlock.querySelector('.white-overlay');
+        if (image && overlay) {
+            image.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+    });
+});
 
         // Change image on vertical scroll
         window.addEventListener('scroll', function() {
