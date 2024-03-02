@@ -146,38 +146,31 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
 
-        // Hide image and white overlay when tapped outside
-        document.body.addEventListener('click', function(event) {
-            if (!event.target.closest('.keyimage') && !event.target.closest('.white-overlay')) {
-                document.querySelectorAll('.keyimage').forEach(function(image) {
-                    image.style.display = 'none';
-                });
-                document.querySelectorAll('.white-overlay').forEach(function(overlay) {
-                    overlay.style.display = 'none';
-                });
-            }
-        });
-
         // Change image on vertical scroll
         window.addEventListener('scroll', function() {
-            eventBlocks.forEach(function(eventBlock) {
-                const image = eventBlock.querySelector('.keyimage');
-                if (image) {
-                    const rect = eventBlock.getBoundingClientRect();
-                    let threshold = window.innerHeight / 2; // Middle of the screen on mobile
-                    if (rect.top <= threshold) {
-                        if (!image.classList.contains('show-image')) {
-                            document.querySelectorAll('.keyimage').forEach(function(img) {
-                                img.style.display = 'none';
-                            });
-                            visibleImage = image;
-                            image.style.display = 'block';
+            if (document.body.classList.contains('show-image')) {
+                eventBlocks.forEach(function(eventBlock) {
+                    const image = eventBlock.querySelector('.keyimage');
+                    if (image) {
+                        const rect = eventBlock.getBoundingClientRect();
+                        let threshold = 290; // Distance from the top of the page
+                        if (window.innerWidth <= 768) {
+                            threshold = window.innerHeight / 2; // Middle of the screen on mobile
                         }
-                    } else {
-                        image.style.display = 'none';
+                        if (rect.top <= threshold) {
+                            if (!image.classList.contains('show-image')) {
+                                document.querySelectorAll('.keyimage').forEach(function(img) {
+                                    img.style.display = 'none';
+                                });
+                                visibleImage = image;
+                                image.style.display = 'block';
+                            }
+                        } else {
+                            image.style.display = 'none';
+                        }
                     }
-                }
-            });
+                });
+            }
         });
     }
 
