@@ -137,15 +137,24 @@ document.addEventListener("DOMContentLoaded", function() {
         eventBlocks.forEach(function(eventBlock) {
             const image = eventBlock.querySelector('.keyimage');
             if (image) {
-                image.style.display = 'none'; // Hide the key image initially
                 eventBlock.addEventListener('click', function() {
                     if (image.classList.contains('show-image')) {
                         image.classList.remove('show-image');
                     } else {
+                        // Hide all other visible images
+                        document.querySelectorAll('.show-image').forEach(function(visible) {
+                            visible.classList.remove('show-image');
+                        });
                         image.classList.add('show-image');
                     }
                 });
             }
+        });
+
+        document.querySelectorAll('.keyimage, .white-overlay').forEach(function(element) {
+            element.addEventListener('click', function() {
+                element.classList.remove('show-image');
+            });
         });
     }
 
