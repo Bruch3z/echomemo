@@ -1,11 +1,17 @@
 *, *::before, *::after {
   box-sizing: border-box;
 }
+/* Disable zooming */
+@viewport {
+  zoom: 1.0 !important;
+  width: device-width !important;
+}
 
 body {
   margin: 280px 10px 10px 10px;
   padding: 0;
   overflow-x: hidden;
+  overscroll-behavior-x: none;
   font-family: Georgia, serif;
   cursor: default;
 }
