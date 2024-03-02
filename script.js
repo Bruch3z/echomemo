@@ -1,3 +1,4 @@
+// JavaScript code to handle the key image behavior on mobile
 document.addEventListener("DOMContentLoaded", function() {
     const eventBlocks = document.querySelectorAll('.eventblock');
     let visibleImage = null; // Track the currently visible image
