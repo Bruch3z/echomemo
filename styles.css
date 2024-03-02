@@ -22,7 +22,7 @@ body {
   z-index: 999;
   padding: 10px;
   min-height: 280px;
-  background-color: none;
+  background-color: transparent;
 }
 
 .header-title {
@@ -225,20 +225,16 @@ p {
   }
 
   /* Show the white overlay on mobile and hide the text content */
-  .eventblock {
-    position: relative;
-  }
-
-  .eventblock:hover .content {
-    display: block;
-  }
-
-  .eventblock:hover .keyimage {
+  .eventblock.active .content {
     display: none;
   }
-
-  .eventblock:hover .white-overlay {
+  
+  .eventblock.active .keyimage {
     display: block;
   }
+  
+  .eventblock.active .white-overlay {
+    display: block;
 }
 
+}
