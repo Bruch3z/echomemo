@@ -137,6 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
         eventBlocks.forEach(function(eventBlock) {
             const image = eventBlock.querySelector('.keyimage');
             if (image) {
+                image.style.display = 'none'; // Hide the key image initially
                 eventBlock.addEventListener('click', function() {
                     if (image.classList.contains('show-image')) {
                         image.classList.remove('show-image');
