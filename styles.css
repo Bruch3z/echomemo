@@ -205,6 +205,10 @@ p {
   }
 
   /* Hide the key image when it's not supposed to be visible */
+  .keyimage.show-image {
+    display: block;
+  }
+
   .keyimage:not(.show-image) {
     display: none;
   }
