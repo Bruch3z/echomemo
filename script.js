@@ -1,4 +1,3 @@
-// JavaScript code to handle the key image behavior on mobile
 document.addEventListener("DOMContentLoaded", function() {
     const eventBlocks = document.querySelectorAll('.eventblock');
     let visibleImage = null; // Track the currently visible image
@@ -147,20 +146,42 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-        // Hide the key image and white overlay initially
-        document.querySelectorAll('.keyimage, .white-overlay').forEach(function(elem) {
-            elem.style.display = 'none';
+        // Hide image and white overlay when tapped
+        document.body.addEventListener('click', function(event) {
+            if (!event.target.closest('.keyimage') && !event.target.closest('.white-overlay')) {
+                document.querySelectorAll('.keyimage').forEach(function(image) {
+                    image.classList.remove('show-image');
+                });
+                document.querySelectorAll('.white-overlay').forEach(function(overlay) {
+                    overlay.style.display = 'none';
+                });
+            }
         });
 
-        // Show the key image and white overlay on tap
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.eventblock')) {
-                const keyImage = e.target.closest('.eventblock').querySelector('.keyimage');
-                const whiteOverlay = e.target.closest('.eventblock').querySelector('.white-overlay');
-                if (keyImage && whiteOverlay) {
-                    keyImage.style.display = 'block';
-                    whiteOverlay.style.display = 'block';
-                }
+        // Change image on vertical scroll
+        window.addEventListener('scroll', function() {
+            if (document.body.classList.contains('show-image')) {
+                eventBlocks.forEach(function(eventBlock) {
+                    const image = eventBlock.querySelector('.keyimage');
+                    if (image) {
+                        const rect = eventBlock.getBoundingClientRect();
+                        let threshold = 290; // Distance from the top of the page
+                        if (window.innerWidth <= 768) {
+                            threshold = window.innerHeight / 2; // Middle of the screen on mobile
+                        }
+                        if (rect.top <= threshold) {
+                            if (!image.classList.contains('show-image')) {
+                                document.querySelectorAll('.keyimage').forEach(function(img) {
+                                    img.classList.remove('show-image');
+                                });
+                                visibleImage = image;
+                                image.classList.add('show-image');
+                            }
+                        } else {
+                            image.classList.remove('show-image');
+                        }
+                    }
+                });
             }
         });
     }
