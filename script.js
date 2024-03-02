@@ -1,4 +1,4 @@
-// JavaScript code to handle the key image behavior on mobile
+// JavaScript code to handle the key image and white overlay behavior on mobile
 document.addEventListener("DOMContentLoaded", function() {
     const eventBlocks = document.querySelectorAll('.eventblock');
     let visibleImage = null; // Track the currently visible image
@@ -136,25 +136,20 @@ document.addEventListener("DOMContentLoaded", function() {
     if (isMobile) {
         eventBlocks.forEach(function(eventBlock) {
             const image = eventBlock.querySelector('.keyimage');
+            const overlay = eventBlock.querySelector('.white-overlay');
             if (image) {
+                image.style.display = 'none'; // Hide the key image initially
+                overlay.style.display = 'none'; // Hide the white overlay initially
                 eventBlock.addEventListener('click', function() {
                     if (image.classList.contains('show-image')) {
                         image.classList.remove('show-image');
+                        overlay.classList.remove('show-overlay');
                     } else {
-                        // Hide all other visible images
-                        document.querySelectorAll('.show-image').forEach(function(visible) {
-                            visible.classList.remove('show-image');
-                        });
                         image.classList.add('show-image');
+                        overlay.classList.add('show-overlay');
                     }
                 });
             }
-        });
-
-        document.querySelectorAll('.keyimage, .white-overlay').forEach(function(element) {
-            element.addEventListener('click', function() {
-                element.classList.remove('show-image');
-            });
         });
     }
 
