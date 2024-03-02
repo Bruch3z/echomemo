@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const rect = eventBlock.getBoundingClientRect();
             let threshold = 290; // Distance from the top of the page
             if (window.innerWidth <= 768) {
-                threshold = window.innerHeight / 2; // Middle of the screen on mobile
+                threshold = 170; // Middle of the screen on mobile
             }
             if (rect.top <= threshold && rect.bottom >= threshold) {
                 visibleEventBlock = eventBlock;
