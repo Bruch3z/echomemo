@@ -134,19 +134,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Add mobile-specific code here
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     if (isMobile) {
-        eventBlocks.forEach(function(eventBlock) {
-            const image = eventBlock.querySelector('.keyimage');
-            if (image) {
-                eventBlock.addEventListener('click', function() {
-                    if (image.classList.contains('show-image')) {
-                        image.classList.remove('show-image');
-                    } else {
-                        image.classList.add('show-image');
-                    }
-                });
-            }
-        });
-
         // Hide image and white overlay when tapped
         document.body.addEventListener('click', function(event) {
             if (!event.target.closest('.keyimage') && !event.target.closest('.white-overlay')) {
