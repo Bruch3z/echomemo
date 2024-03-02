@@ -134,11 +134,19 @@ document.addEventListener("DOMContentLoaded", function() {
     // Add mobile-specific code here
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     if (isMobile) {
+        // Hide key image and white overlay initially
+        document.querySelectorAll('.keyimage').forEach(function(image) {
+            image.style.display = 'none';
+        });
+        document.querySelectorAll('.white-overlay').forEach(function(overlay) {
+            overlay.style.display = 'none';
+        });
+
         // Hide image and white overlay when tapped
         document.body.addEventListener('click', function(event) {
             if (!event.target.closest('.keyimage') && !event.target.closest('.white-overlay')) {
                 document.querySelectorAll('.keyimage').forEach(function(image) {
-                    image.classList.remove('show-image');
+                    image.style.display = 'none';
                 });
                 document.querySelectorAll('.white-overlay').forEach(function(overlay) {
                     overlay.style.display = 'none';
@@ -160,13 +168,13 @@ document.addEventListener("DOMContentLoaded", function() {
                         if (rect.top <= threshold) {
                             if (!image.classList.contains('show-image')) {
                                 document.querySelectorAll('.keyimage').forEach(function(img) {
-                                    img.classList.remove('show-image');
+                                    img.style.display = 'none';
                                 });
                                 visibleImage = image;
-                                image.classList.add('show-image');
+                                image.style.display = 'block';
                             }
                         } else {
-                            image.classList.remove('show-image');
+                            image.style.display = 'none';
                         }
                     }
                 });
