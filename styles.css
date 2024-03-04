@@ -198,53 +198,38 @@ p {
   body {
     margin: 90% 10px 10px 10px;
   }
-
+  
   .header {
     min-height: 80px;
     background-color: white;
   }
-
-  .keyimage {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  /* Hide the key image when it's not supposed to be visible */
-  .keyimage.show-image {
-    display: block;
-  }
-
-  .keyimage:not(.show-image) {
+  
+  /* Hide the key image and white overlay by default */
+  .keyimage,
+  .white-overlay {
     display: none;
   }
-
+  
+  /* Show the key image and white overlay when the event block is active */
+  .eventblock.active .keyimage,
+  .eventblock.active .white-overlay {
+    display: block;
+  }
+  
   .fixed-dropdown {
     position: fixed;
     top: 90px;
     left: 10px;
     width: 100vw;
   }
-
+  
   .dropdown-menu {
     margin-top: 0;
   }
-
+  
   .btn-custom {
     padding-left: 0;
   }
-
-  /* Show the white overlay on mobile and hide the text content */
-  .eventblock.active .content {
-    display: none;
-  }
   
-  .eventblock.active .keyimage {
-    display: block;
-  }
-  
-  .eventblock.active .white-overlay {
-    display: block;
-}
 
 }
