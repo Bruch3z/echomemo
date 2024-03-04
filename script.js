@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let visibleImage = null; // Track the currently visible image
     let activeEventBlock = null; // Track the currently active event block
 
-    // Add hover event listener to event blocks
     eventBlocks.forEach(function(eventBlock) {
         eventBlock.addEventListener('mouseover', function() {
             eventBlock.classList.add('eventblock-hover');
@@ -14,21 +13,29 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Add class to first event block to make it black
     eventBlocks[0].classList.add('eventblock-active');
 
-    // Set the initial text of the dropdown button to the first year
     const firstYear = eventBlocks[0].id.replace('event-', '');
     document.getElementById('dropdownMenuButton').textContent = firstYear;
 
+    let ticking = false;
     window.addEventListener('scroll', function() {
-        let visibleEventBlock = null; // Track the currently visible event block
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateVisibility();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
 
+    function updateVisibility() {
+        let visibleEventBlock = null;
         eventBlocks.forEach(function(eventBlock) {
             const rect = eventBlock.getBoundingClientRect();
             let threshold = 290; // Distance from the top of the page
             if (window.innerWidth <= 768) {
-                threshold = 160; // Threshold for mobile devices
+                threshold = window.innerHeight / 2; // Middle of the screen on mobile
             }
             if (rect.top <= threshold && rect.bottom >= threshold) {
                 visibleEventBlock = eventBlock;
@@ -39,11 +46,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const date = visibleEventBlock.querySelector('.date').textContent;
             document.getElementById('dateText').textContent = date;
 
-            // Update dropdown text
             const yearId = visibleEventBlock.id.replace('event-', '');
             document.getElementById('dropdownMenuButton').textContent = yearId;
 
-            // Turn the active event block grey
             if (activeEventBlock && activeEventBlock !== visibleEventBlock) {
                 activeEventBlock.classList.remove('eventblock-active');
             }
@@ -52,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             document.getElementById('dateText').textContent = '';
 
-            // If no event block is visible, remove active class from the last active block
             if (activeEventBlock) {
                 activeEventBlock.classList.remove('eventblock-active');
                 activeEventBlock = null;
@@ -70,17 +74,20 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (rect.top <= threshold) {
                     if (!image.classList.contains('show-image')) {
                         if (visibleImage && visibleImage !== image) {
+                            visibleImage.style.opacity = '0.25'; // Set opacity to 75%
                             visibleImage.classList.remove('show-image');
                         }
                         visibleImage = image;
-                        image.classList.add('show-image');
+                        visibleImage.classList.add('show-image');
+                        visibleImage.style.opacity = '1'; // Set opacity to 100%
                     }
                 } else {
+                    image.style.opacity = '0.25'; // Set opacity to 75% when not visible
                     image.classList.remove('show-image');
                 }
             }
         });
-    });
+    }
 
     const dropdownItems = document.querySelectorAll('.dropdown-item-custom');
     const dropdownMenuButton = document.getElementById('dropdownMenuButton');
@@ -89,9 +96,9 @@ document.addEventListener("DOMContentLoaded", function() {
     dropdownItems.forEach(function(item) {
         item.addEventListener('click', function(e) {
             e.preventDefault();
-            const targetId = item.getAttribute('href').substring(1); // Remove the #
+            const targetId = item.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
-            const offset = 0; // Offset from the top
+            const offset = 0;
             const bodyRect = document.body.getBoundingClientRect().top;
             const targetRect = targetElement.getBoundingClientRect().top;
             const targetOffset = targetRect - bodyRect - offset;
@@ -125,34 +132,24 @@ document.addEventListener("DOMContentLoaded", function() {
             aproposContent.style.display = 'none';
             aproposButton.querySelector('h3').textContent = 'à propos';
         }
-        event.stopPropagation(); // Stop the event from propagating to parent elements
+        event.stopPropagation();
     }
 
     aproposButton.addEventListener('click', toggleDropdown);
 
-    // Add mobile-specific code here
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    if (isMobile) {
-        eventBlocks.forEach(function(eventBlock) {
-            const image = eventBlock.querySelector('.keyimage');
-            const overlay = eventBlock.querySelector('.white-overlay');
-            if (image) {
-                image.style.display = 'none'; // Hide the key image initially
-                overlay.style.display = 'none'; // Hide the white overlay initially
-                eventBlock.addEventListener('click', function() {
-                    if (image.classList.contains('show-image')) {
-                        image.classList.remove('show-image');
-                        overlay.classList.remove('show-overlay');
-                    } else {
-                        image.classList.add('show-image');
-                        overlay.classList.add('show-overlay');
-                    }
-                });
-            }
-        });
-    }
+    eventBlocks.forEach(function(eventBlock) {
+        const image = eventBlock.querySelector('.keyimage');
+        if (image) {
+            eventBlock.addEventListener('click', function() {
+                if (image.classList.contains('show-image')) {
+                    image.classList.remove('show-image');
+                } else {
+                    image.classList.add('show-image');
+                }
+            });
+        }
+    });
 
-    // Open dropdown menu on span click
     dateTextSpan.addEventListener('click', function() {
         const dropdownMenu = document.querySelector('.dropdown-menu');
         if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
@@ -162,7 +159,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Toggle visibility of dropdown menu on button click
     dropdownMenuButton.addEventListener('click', function() {
         const dropdownMenu = document.querySelector('.dropdown-menu');
         if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {

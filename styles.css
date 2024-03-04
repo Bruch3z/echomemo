@@ -182,16 +182,6 @@ p {
   color: #B9BBB6;
 }
 
-.white-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(255, 255, 255);
-  z-index: 2;
-}
 
 
 @media (max-width: 768px) {
@@ -202,18 +192,6 @@ p {
   .header {
     min-height: 80px;
     background-color: white;
-  }
-  
-  /* Hide the key image and white overlay by default */
-  .keyimage,
-  .white-overlay {
-    display: none;
-  }
-  
-  /* Show the key image and white overlay when the event block is active */
-  .eventblock.active .keyimage,
-  .eventblock.active .white-overlay {
-    display: block;
   }
   
   .fixed-dropdown {
@@ -230,6 +208,16 @@ p {
   .btn-custom {
     padding-left: 0;
   }
+
   
+  .keyimage {
+      display: block;
+      max-height: 200px;
+      max-width: 325px;
+      position: relative;
+      top: 10px;
+      margin: 0 auto 25px; /* Center the image horizontally */
+      z-index: 997;
+  }
 
 }
