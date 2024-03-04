@@ -14,7 +14,7 @@ body {
   overscroll-behavior-x: none;
   font-family: Georgia, serif;
   cursor: default;
-  touch-action: manipulation;
+  text-align: left;
 }
 
 #toggleButton,
@@ -35,7 +35,6 @@ body {
 .header-title {
   margin: 0px;
 }
-
 
 
 h1 {
@@ -74,6 +73,16 @@ p {
   color: black;
 }
 
+hr {
+  border: none !important;
+  height: 1px;
+  background-color: rgb(0, 0, 0);
+  margin: 0 0 15px 0;
+}
+
+.custom-hr {
+  padding: 5px;
+}
 
 /* KEY IMAGE */
 .keyimage {
@@ -188,6 +197,7 @@ p {
 @media (max-width: 768px) {
   body {
     margin: 90% 10px 10px 10px;
+    text-align: left;
   }
   
   .header {
@@ -211,6 +221,10 @@ p {
   }
 
   
+.custom-hr {
+  padding: 0;
+}
+
   .keyimage {
       display: block;
       max-height: 200px;
