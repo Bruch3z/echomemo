@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    eventBlocks[0].classList.add('eventblock-active');
 
     const firstYear = eventBlocks[0].id.replace('event-', '');
     document.getElementById('dropdownMenuButton').textContent = firstYear;
@@ -45,23 +44,34 @@ document.addEventListener("DOMContentLoaded", function() {
         if (visibleEventBlock) {
             const date = visibleEventBlock.querySelector('.date').textContent;
             document.getElementById('dateText').textContent = date;
-
+        
             const yearId = visibleEventBlock.id.replace('event-', '');
             document.getElementById('dropdownMenuButton').textContent = yearId;
-
+        
             if (activeEventBlock && activeEventBlock !== visibleEventBlock) {
                 activeEventBlock.classList.remove('eventblock-active');
+                activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
+                    hr.style.opacity = '0'; // Hide <hr> of previously active block
+                });
             }
             activeEventBlock = visibleEventBlock;
             activeEventBlock.classList.add('eventblock-active');
+            activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
+                hr.style.opacity = '1'; // Show <hr> of currently active block
+            });
         } else {
             document.getElementById('dateText').textContent = '';
-
+        
             if (activeEventBlock) {
                 activeEventBlock.classList.remove('eventblock-active');
+                activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
+                    hr.style.opacity = '0'; // Hide <hr> if no block is active
+                });
                 activeEventBlock = null;
             }
         }
+        
+        
 
         eventBlocks.forEach(function(eventBlock) {
             const image = eventBlock.querySelector('.keyimage');
