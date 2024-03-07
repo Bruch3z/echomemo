@@ -64,9 +64,19 @@ p {
   line-height: 1.1;
 }
 
+.plainlink {
+  color: black;
+  text-decoration: none;
+}
+
+.plainlink:hover {
+  color: #e7eae2;
+  text-decoration: none;
+}
+
  /* EVENT BLOCK */
 .eventblock {
-  color: #B9BBB6;
+  color: #e7eae2;
 }
 
 .eventblock-active {
@@ -122,7 +132,7 @@ hr {
 }
 
 #toggleButton:hover {
-  color: #B9BBB6;
+  color: #e7eae2;
 }
 
 
@@ -140,7 +150,7 @@ hr {
 }
 
 #dateText:hover {
-  color: #B9BBB6;
+  color: #e7eae2;
 }
 
 
@@ -164,6 +174,7 @@ hr {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   border-radius: 0px;
+  padding-left: 0;
 }
 
 .btn-custom:focus {
@@ -171,7 +182,7 @@ hr {
 }
 
 .btn-custom:hover {
-  color: #B9BBB6;
+  color: #e7eae2;
 }
 
 .dropdown-item-custom {
@@ -188,12 +199,12 @@ hr {
 
 .dropdown-item-custom:hover {
   background-color: #ffffff00;
-  color: #B9BBB6;
+  color: #e7eae2;
 }
 
 .dropdown-item-custom:active {
   background-color: #ffffff00;
-  color: #B9BBB6;
+  color: #e7eae2;
 }
 
 
