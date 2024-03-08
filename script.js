@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function updateVisibility() {
         let visibleEventBlock = null;
+        let visibleImageBottom = null;
+        
         eventBlocks.forEach(function(eventBlock) {
             const rect = eventBlock.getBoundingClientRect();
             let threshold = 290; // Distance from the top of the page
@@ -39,15 +41,20 @@ document.addEventListener("DOMContentLoaded", function() {
             if (rect.top <= threshold && rect.bottom >= threshold) {
                 visibleEventBlock = eventBlock;
             }
+    
+            if (rect.bottom <= window.innerHeight && rect.bottom >= window.innerHeight - 50) {
+                visibleImageBottom = eventBlock.querySelector('.keyimage');
+            }
         });
-
+    
+        // Top event blocks logic
         if (visibleEventBlock) {
             const date = visibleEventBlock.querySelector('.date').textContent;
             document.getElementById('dateText').textContent = date;
-        
+    
             const yearId = visibleEventBlock.id.replace('event-', '');
             document.getElementById('dropdownMenuButton').textContent = yearId;
-        
+    
             if (activeEventBlock && activeEventBlock !== visibleEventBlock) {
                 activeEventBlock.classList.remove('eventblock-active');
                 activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
@@ -61,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         } else {
             document.getElementById('dateText').textContent = '';
-        
+    
             if (activeEventBlock) {
                 activeEventBlock.classList.remove('eventblock-active');
                 activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
@@ -69,10 +76,33 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
                 activeEventBlock = null;
             }
+    
+            if (visibleImage && activeEventBlock !== eventBlocks[0]) {
+                visibleImage.style.opacity = '0.25'; // Set opacity to 75%
+                visibleImage.classList.remove('show-image');
+                visibleImage = null;
+            }
         }
-        
-        
-
+    
+        // Bottom event blocks logic
+        if (visibleImageBottom) {
+            if (!visibleImageBottom.classList.contains('show-image')) {
+                if (visibleImage && visibleImage !== visibleImageBottom) {
+                    visibleImage.style.opacity = '0.25'; // Set opacity to 75%
+                    visibleImage.classList.remove('show-image');
+                }
+                visibleImage = visibleImageBottom;
+                visibleImage.classList.add('show-image');
+                visibleImage.style.opacity = '1'; // Set opacity to 100%
+            }
+        } else {
+            if (visibleImage && activeEventBlock !== eventBlocks[eventBlocks.length - 1]) {
+                visibleImage.style.opacity = '0.25'; // Set opacity to 75%
+                visibleImage.classList.remove('show-image');
+                visibleImage = null;
+            }
+        }
+    
         eventBlocks.forEach(function(eventBlock) {
             const image = eventBlock.querySelector('.keyimage');
             if (image) {
@@ -97,7 +127,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
         });
+    
     }
+    
+    
+
 
     const dropdownItems = document.querySelectorAll('.dropdown-item-custom');
     const dropdownMenuButton = document.getElementById('dropdownMenuButton');
