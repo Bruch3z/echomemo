@@ -30,8 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function updateVisibility() {
         let visibleEventBlock = null;
-        let visibleImageBottom = null;
-        
         eventBlocks.forEach(function(eventBlock) {
             const rect = eventBlock.getBoundingClientRect();
             let threshold = 290; // Distance from the top of the page
@@ -41,20 +39,28 @@ document.addEventListener("DOMContentLoaded", function() {
             if (rect.top <= threshold && rect.bottom >= threshold) {
                 visibleEventBlock = eventBlock;
             }
-    
-            if (rect.bottom <= window.innerHeight && rect.bottom >= window.innerHeight - 50) {
-                visibleImageBottom = eventBlock.querySelector('.keyimage');
-            }
         });
     
-        // Top event blocks logic
+        // Hide all key images when bottom margin is reached
+        const bottomMargin = document.getElementById('bottom-margin').getBoundingClientRect().top;
+        const threshold = window.innerHeight / 2; // Adjust this value as needed
+        if (bottomMargin <= threshold) {
+            eventBlocks.forEach(function(eventBlock) {
+                const image = eventBlock.querySelector('.keyimage');
+                if (image) {
+                    image.style.opacity = '0'; // Hide key images when bottom margin is reached
+                    image.classList.remove('show-image');
+                }
+            });
+        }
+    
         if (visibleEventBlock) {
             const date = visibleEventBlock.querySelector('.date').textContent;
             document.getElementById('dateText').textContent = date;
-    
+        
             const yearId = visibleEventBlock.id.replace('event-', '');
             document.getElementById('dropdownMenuButton').textContent = yearId;
-    
+        
             if (activeEventBlock && activeEventBlock !== visibleEventBlock) {
                 activeEventBlock.classList.remove('eventblock-active');
                 activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
@@ -68,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         } else {
             document.getElementById('dateText').textContent = '';
-    
+        
             if (activeEventBlock) {
                 activeEventBlock.classList.remove('eventblock-active');
                 activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
@@ -77,26 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 activeEventBlock = null;
             }
     
-            if (visibleImage && activeEventBlock !== eventBlocks[0]) {
-                visibleImage.style.opacity = '0.25'; // Set opacity to 75%
-                visibleImage.classList.remove('show-image');
-                visibleImage = null;
-            }
-        }
-    
-        // Bottom event blocks logic
-        if (visibleImageBottom) {
-            if (!visibleImageBottom.classList.contains('show-image')) {
-                if (visibleImage && visibleImage !== visibleImageBottom) {
-                    visibleImage.style.opacity = '0.25'; // Set opacity to 75%
-                    visibleImage.classList.remove('show-image');
-                }
-                visibleImage = visibleImageBottom;
-                visibleImage.classList.add('show-image');
-                visibleImage.style.opacity = '1'; // Set opacity to 100%
-            }
-        } else {
-            if (visibleImage && activeEventBlock !== eventBlocks[eventBlocks.length - 1]) {
+            if (visibleImage) {
                 visibleImage.style.opacity = '0.25'; // Set opacity to 75%
                 visibleImage.classList.remove('show-image');
                 visibleImage = null;
@@ -127,11 +114,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
         });
-    
+        const bottomMarginRect = document.getElementById('bottom-margin').getBoundingClientRect();
+        if (bottomMarginRect.top <= threshold && bottomMarginRect.bottom >= threshold) {
+            eventBlocks.forEach(function(eventBlock) {
+                const image = eventBlock.querySelector('.keyimage');
+                if (image) {
+                    image.style.opacity = '0'; // Hide key images when bottom margin is reached
+                    image.classList.remove('show-image');
+                }
+            });
+        }
     }
     
-    
-
 
     const dropdownItems = document.querySelectorAll('.dropdown-item-custom');
     const dropdownMenuButton = document.getElementById('dropdownMenuButton');
