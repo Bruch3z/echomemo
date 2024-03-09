@@ -206,11 +206,14 @@ hr {
   color: #e7eae2;
 }
 
+#bottom-margin {
+  height: 400px;
+}
 
 
 @media (max-width: 768px) {
   body {
-    margin: 90% 10px 10px 10px;
+    margin: 75% 10px 10px 10px;
     text-align: left;
   }
   
@@ -247,6 +250,10 @@ hr {
       top: 10px;
       margin: 0 auto 25px; /* Center the image horizontally */
       z-index: 997;
+  }
+
+  #bottom-margin {
+    height: 200px;
   }
 
 }
