@@ -32,6 +32,9 @@ document.addEventListener("DOMContentLoaded", function() {
         eventBlock.addEventListener('mouseout', function() {
             eventBlock.classList.remove('eventblock-hover');
         });
+
+        const logoleft = document.querySelector('.logoleft');
+        logoleft.style.opacity = '0';
     });
 
     const firstYear = eventBlocks[0].id.replace('event-', '');
@@ -223,20 +226,63 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
+
+    function toggleDropdown(event) {
+        const aproposContent = document.getElementById('info');
+        const buttonText = document.getElementById('toggleButton').querySelector('h3');
+        
+        if (aproposContent.style.display === 'none' || aproposContent.style.display === '') {
+            aproposContent.style.display = 'block';
+            buttonText.textContent = 'fermer';
+        } else {
+            aproposContent.style.display = 'none';
+            buttonText.textContent = 'à propos';
+        }
+        event.stopPropagation();
+    }
+    
+    const aproposButton = document.getElementById('toggleButton');
+    aproposButton.addEventListener('click', toggleDropdown);
     
 
-    const aproposButton = document.getElementById('toggleButton');
-const aproposContent = document.getElementById('info');
 
-function toggleDropdown(event) {
-    if (aproposContent.style.display === 'none' || aproposContent.style.display === '') {
-        aproposContent.style.display = 'block';
-        aproposButton.querySelector('h3').textContent = 'fermer';
-    } else {
-        aproposContent.style.display = 'none';
-        aproposButton.querySelector('h3').textContent = 'à propos';
+
+// Get the elements
+const headerLogo = document.querySelector('.headerlogo');
+const headerContainer = document.querySelector('.logoleft');
+
+let opacity = 0; // Initial opacity value
+
+// Set up the Intersection Observer
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+            // If the headerlogo is out of view, fade in the header container
+            fadeIn();
+        } else {
+            // If the headerlogo is in view, fade out the header container
+            fadeOut();
+        }
+    });
+}, { threshold: 0 });
+
+// Observe the headerLogo
+observer.observe(headerLogo);
+
+function fadeIn() {
+    if (opacity < 1) {
+        opacity += 0.2; // Adjust the increment value as needed for smoother or faster animation
+        headerContainer.style.opacity = opacity;
+        headerContainer.style.transform = `translateY(${(1-opacity)*-100}%)`;
+        requestAnimationFrame(fadeIn);
     }
-    event.stopPropagation();
 }
 
-aproposButton.addEventListener('click', toggleDropdown);
+function fadeOut() {
+    if (opacity > 0) {
+        opacity -= 0.2; // Adjust the increment value as needed for smoother or faster animation
+        headerContainer.style.opacity = opacity;
+        headerContainer.style.transform = `translateY(${(1-opacity)*-100}%)`;
+        requestAnimationFrame(fadeOut);
+    }
+}

@@ -135,6 +135,7 @@ p {
   position: relative; /* Keeps the image within its container */
   z-index: 997;
   opacity: 0%;
+  padding-right: 0px;
 }
 
 .articleimg {
@@ -222,17 +223,25 @@ p {
   color: #6a7682;
 }
 
-
-
-
 #bottom-margin {
   height: 400px;
 }
 
+#top-margin {
+  height: 0px;
+}
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
+  .vertical-line {
+    display: none;
+}
+
   body {
-    text-align: left;
+    text-align: center;
+  }
+  #top-margin {
+    height: 25vh;
   }
 
   .header {
@@ -245,8 +254,8 @@ p {
     position: fixed;
     top: auto;
     bottom: 0;
-    left: 10px;
-    width: 100vw;
+    transform: translateY(0%);
+    z-index: 998;
     background-color: #fcfcfc;
   }
 
@@ -267,7 +276,7 @@ p {
   
   .keyimage {
     display: block;
-    max-height: 200px;
+    max-height: 325px;
     max-width: 325px;
     position: relative;
     top: 10px;
