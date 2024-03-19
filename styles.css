@@ -40,7 +40,7 @@ body {
 
 /* General styles */
 .vertical-line {
-  border-left: 2px solid #232323;
+  border-left: 1px solid #232323;
   top: 30px;
   bottom: 30px;
   height: calc(100vh - 60px);
@@ -55,12 +55,11 @@ body {
 /* Header styles */
 .header {
   position: fixed;
-  z-index: 999;
   min-height: 28px;
 }
 
 .headerlogo {
-  margin-bottom:15px;
+  margin-bottom: 30px;
 }
 
 .description {
@@ -71,15 +70,17 @@ body {
 
 /* Typography */
 h1 {
-  font-family: 'SuisseWorks-Regular', Georgia, serif;
-  font-size: 24px;
-  letter-spacing: -0.08rem;
+  font-family: 'SuisseWorks-Medium', Georgia, serif;
+  font-size:36px;
+  letter-spacing: -0.1rem;
+  line-height: 1em;
   text-transform: uppercase;
   margin-top: 10px;
+  text-align: center;
 }
 
 h2 {
-  font-size: 32px;
+  font-size: 36px;
   letter-spacing: -0.08rem;
   padding-top: 30px;
 }
@@ -95,13 +96,13 @@ h3 {
 
 p {
   font-size: 13px;
-  letter-spacing: -0.01rem;
-  line-height: 1.1;
+  line-height: 1.2;
+  text-align: center;
 }
 
 /* Links */
 .plainlink {
-  color: #6a7682;
+  color: #232323;
   text-decoration: none;
 }
 
@@ -110,11 +111,18 @@ p {
   text-decoration: none;
 }
 
+.eventdate {
+  margin-bottom: 30px;
+}
+
+.eventref {
+  margin-top: 30px;
+}
 
 
 .eventblock {
   color: #232323;
-  margin: 15px;
+  margin: 15px 0 15px;
 }
 
 .eventblock-active {
@@ -124,27 +132,26 @@ p {
 
 
 /* Event date styles */
-.eventdate {
-  padding-top: 10px;
+
+.event-title {
+  padding-bottom: 30px;
+}
+
+#imgreference {
+  margin-top: 30px;
 }
 
 /* Key image styles */
-.keyimage {
-  max-width: 100%; /* Ensures the image does not exceed the column width */
-  height: auto; /* Maintains the image aspect ratio */
-  position: relative; /* Keeps the image within its container */
-  z-index: 997;
-  opacity: 0%;
-  padding-right: 0px;
+.carousel-item img {
+  max-width: 100%;
+  max-height: 33vh;
+  margin: 0 auto; /* Center the image horizontally */
 }
+
 
 .articleimg {
   width: 100%;
   height: auto;
-}
-
-.show-image {
-  display: block;
 }
 
 /* A propos */
@@ -185,8 +192,6 @@ p {
   transform: translateY(-50%);
   z-index: 998;
 }
-
-
 
 .btn-custom {
   font-family: 'SuisseWorks-Bold', Georgia, serif;
@@ -248,6 +253,7 @@ p {
     background-color: #fcfcfc;
     top: 0;
     padding: 15px;
+    z-index: 1000;
   }
 
   .fixed-dropdown {

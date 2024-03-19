@@ -12,17 +12,7 @@ document.getElementById('dateText').addEventListener('click', function() {
 
 document.addEventListener("DOMContentLoaded", function() {
     const eventBlocks = document.querySelectorAll('.eventblock');
-    let visibleImage = null; // Track the currently visible image
     let activeEventBlock = null; // Track the currently active event block
-
-    // Set the initial visibility of the first key image
-    const firstKeyImage = eventBlocks[0].querySelector('.keyimage');
-    firstKeyImage.style.opacity = '1'; // Set opacity to 100%
-    firstKeyImage.classList.add('show-image');
-
-    // Set the initial date text to the date of the first event block
-    const firstDate = eventBlocks[0].querySelector('.date').textContent;
-    document.getElementById('dateText').textContent = firstDate;
 
     eventBlocks.forEach(function(eventBlock) {
         eventBlock.addEventListener('mouseover', function() {
@@ -36,7 +26,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const logoleft = document.querySelector('.logoleft');
         logoleft.style.opacity = '0';
     });
-
+    const firstEventBlock = eventBlocks[0];
+    const dateText = firstEventBlock.querySelector('.date').textContent;
+    document.getElementById('dateText').textContent = dateText;
     const firstYear = eventBlocks[0].id.replace('event-', '');
     document.getElementById('dropdownMenuButton').textContent = firstYear;
 
@@ -85,19 +77,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-        // Hide all key images when bottom margin is reached
-        const bottomMargin = document.getElementById('bottom-margin').getBoundingClientRect().bottom; // Use bottom instead of top
-        const threshold = window.innerHeight / 2; // Adjust this value as needed
-        if (bottomMargin <= threshold) {
-            eventBlocks.forEach(function(eventBlock) {
-                const image = eventBlock.querySelector('.keyimage');
-                if (image) {
-                    image.style.display = 'none'; // Hide key images when bottom margin is reached
-                    image.classList.remove('show-image');
-                }
-            });
-        }
-
         if (visibleEventBlock) {
             const date = visibleEventBlock.querySelector('.date').textContent;
             document.getElementById('dateText').textContent = date;
@@ -126,46 +105,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     });
                     activeEventBlock = null;
                 }
-
-                if (visibleImage) {
-                    visibleImage.style.opacity = '0.25'; // Set opacity to 75%
-                    visibleImage.classList.remove('show-image');
-                    visibleImage = null;
-                }
-            }
-
-            eventBlocks.forEach(function(eventBlock) {
-                const image = eventBlock.querySelector('.keyimage');
-                if (image) {
-                    const rect = eventBlock.getBoundingClientRect();
-                    let threshold = window.innerHeight / 2; // Middle of the screen on all devices
-                    if (rect.top <= threshold) {
-                        if (!image.classList.contains('show-image')) {
-                            if (visibleImage && visibleImage !== image) {
-                                visibleImage.style.opacity = '0'; // Set opacity to 75%
-                                visibleImage.classList.remove('show-image');
-                            }
-                            visibleImage = image;
-                            visibleImage.classList.add('show-image');
-                            visibleImage.style.opacity = '1'; // Set opacity to 100%
-                        }
-                    } else {
-                        image.style.opacity = '0'; // Set opacity to 75% when not visible
-                        image.classList.remove('show-image');
-                    }
-                }
-            });
-            
-
-            const bottomMarginRect = document.getElementById('bottom-margin').getBoundingClientRect();
-            if (bottomMarginRect.top <= threshold && bottomMarginRect.bottom >= threshold) {
-                eventBlocks.forEach(function(eventBlock) {
-                    const image = eventBlock.querySelector('.keyimage');
-                    if (image) {
-                        image.style.opacity = '0'; // Hide key images when bottom margin is reached
-                        image.classList.remove('show-image');
-                    }
-                });
             }
         }
 
@@ -203,19 +142,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         aproposButton.addEventListener('click', toggleDropdown);
 
-        eventBlocks.forEach(function(eventBlock) {
-            const image = eventBlock.querySelector('.keyimage');
-            if (image) {
-                eventBlock.addEventListener('click', function() {
-                    if (image.classList.contains('show-image')) {
-                        image.classList.remove('show-image');
-                    } else {
-                        image.classList.add('show-image');
-                    }
-                });
-            }
-        });
-
     });
 
     function toggleDropdown() {
@@ -224,8 +150,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const buttonText = document.getElementById('toggleButton').textContent;
         document.getElementById('toggleButton').textContent = buttonText === 'fermer' ? 'à propos' : 'fermer';
     }
-
-
 
     function toggleDropdown(event) {
         const aproposContent = document.getElementById('info');
@@ -243,9 +167,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const aproposButton = document.getElementById('toggleButton');
     aproposButton.addEventListener('click', toggleDropdown);
-    
-
-
 
 // Get the elements
 const headerLogo = document.querySelector('.headerlogo');
@@ -286,3 +207,39 @@ function fadeOut() {
         requestAnimationFrame(fadeOut);
     }
 }
+
+
+// Carousel
+document.addEventListener("DOMContentLoaded", function() {
+    const eventBlocks = document.querySelectorAll('.eventblock');
+
+    eventBlocks.forEach(function(eventBlock) {
+        const imageCarousel = eventBlock.querySelector('.carousel');
+        const imgreferenceSpan = eventBlock.querySelector('#imgreference');
+
+        const images = imageCarousel.querySelectorAll('.carousel-item');
+        let currentIndex = 0;
+
+        images[currentIndex].classList.add('active');
+        updateReference(); // Call updateReference on page load
+
+        images.forEach(function(image) {
+            image.addEventListener('click', function() {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+                updateReference();
+            });
+        });
+
+        imageCarousel.addEventListener('slid.bs.carousel', function() {
+            updateReference();
+        });
+
+        function updateReference() {
+            const activeItem = eventBlock.querySelector('.carousel-item.active img');
+            const altText = activeItem.getAttribute('alt');
+            imgreferenceSpan.textContent = altText;
+        }
+    });
+});
