@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const eventBlocks = document.querySelectorAll('.eventblock');
     let activeEventBlock = null; // Track the currently active event block
 
+    // Update visibility on page load
+    updateVisibility();
+
     eventBlocks.forEach(function(eventBlock) {
         eventBlock.addEventListener('mouseover', function() {
             eventBlock.classList.add('eventblock-hover');
