@@ -53,37 +53,26 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     
-        // Toggle active state for event blocks
+        // Toggle active state for event blocks and update opacity
         eventBlocks.forEach(function(eventBlock) {
             if (eventBlock === visibleEventBlock) {
                 if (!eventBlock.classList.contains('eventblock-active')) {
                     eventBlock.classList.add('eventblock-active');
                 }
-                eventBlock.querySelectorAll('.eventdate').forEach(function(dateElement) {
-                    dateElement.classList.add('eventdate-active');
-                });
-    
-                // Update date and year when event block is in the middle of the screen
-                const date = eventBlock.querySelector('.date').textContent;
-                document.getElementById('dateText').textContent = date;
-    
-                const yearId = eventBlock.id.replace('event-', '');
-                document.getElementById('dropdownMenuButton').textContent = yearId;
+                eventBlock.style.opacity = 1; // Set opacity to 100% for active event blocks
             } else {
                 eventBlock.classList.remove('eventblock-active');
-                eventBlock.querySelectorAll('.eventdate').forEach(function(dateElement) {
-                    dateElement.classList.remove('eventdate-active');
-                });
+                eventBlock.style.opacity = 0.25; // Set opacity to 33% for inactive event blocks
             }
         });
-
+    
         if (visibleEventBlock) {
             const date = visibleEventBlock.querySelector('.date').textContent;
             document.getElementById('dateText').textContent = date;
-
+    
             const yearId = visibleEventBlock.id.replace('event-', '');
             document.getElementById('dropdownMenuButton').textContent = yearId;
-
+    
             if (activeEventBlock && activeEventBlock !== visibleEventBlock) {
                 activeEventBlock.classList.remove('eventblock-active');
                 activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
@@ -94,20 +83,20 @@ document.addEventListener("DOMContentLoaded", function() {
             activeEventBlock.classList.add('eventblock-active');
             activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
                 hr.style.opacity = '1'; // Show <hr> of currently active block
+            });
+        } else {
+            document.getElementById('dateText').textContent = '';
+    
+            if (activeEventBlock) {
+                activeEventBlock.classList.remove('eventblock-active');
+                activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
+                    hr.style.opacity = '0'; // Hide <hr> if no block is active
                 });
-            } else {
-                document.getElementById('dateText').textContent = '';
-
-                if (activeEventBlock) {
-                    activeEventBlock.classList.remove('eventblock-active');
-                    activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
-                        hr.style.opacity = '0'; // Hide <hr> if no block is active
-                    });
-                    activeEventBlock = null;
-                }
+                activeEventBlock = null;
             }
         }
-
+    }
+    
         const dropdownItems = document.querySelectorAll('.dropdown-item-custom');
         const dropdownMenuButton = document.getElementById('dropdownMenuButton');
         const dateTextSpan = document.getElementById('dateText');
