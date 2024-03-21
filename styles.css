@@ -48,6 +48,13 @@ body {
   z-index: 666;
 }
 
+.customhr {
+  height: 1px; 
+  background-color: #232323; 
+  margin: 60px 0 30px 0;
+}
+
+
 #toggleButton,
 .fixed-dropdown {
   cursor: pointer;
@@ -247,12 +254,6 @@ p {
   .vertical-line {
     display: none;
 }
-
-  .customhr {
-    height: 1px; 
-    background-color: #232323; 
-    margin: 60px 0 30px 0;
-  }
 
   body {
     text-align: center;
