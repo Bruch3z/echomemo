@@ -8,6 +8,7 @@
   width: device-width !important;
 }
 
+
 /* Fonts */
 @font-face {
   font-family: 'SuisseWorks-Bold';
@@ -27,6 +28,50 @@
   font-weight: normal;
 }
 
+
+/* vertical line */
+.father-div {
+  position: relative;
+}
+
+.bordered-right {
+  border-left: 1px solid black;
+  height: calc(100vh - 30px);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  position: fixed;
+  width: calc(100% - 960px);
+  right: 0; 
+  z-index: 2;
+}
+
+.bordered-left {
+  border-left: 1px solid black;
+  height: calc(100vh - 30px);
+  padding-top: 15px 0 15px 0;
+  position: fixed;
+  z-index: 1;
+}
+
+.gradient {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  display: none; /* Initially hide the gradient */
+}
+
+@media (min-width: 1290px) {
+  .gradient {
+      display: block; /* Show the gradient when screen width is over 1000px */
+      width: 25vw; /* Set the initial width relative to viewport width */
+      
+      background: linear-gradient(to left, rgb(0, 183, 255), rgba(0, 0, 255, 0));
+  }
+}
+
+
+
 /* Body styles */
 body {
   overflow-x: hidden;
@@ -36,22 +81,13 @@ body {
   text-align: left;
   color: #232323;
   background-color: #fcfcfc;
-  padding-right: 10px;
-}
-
-/* General styles */
-.vertical-line {
-  border-left: 1px solid #232323;
-  top: 30px;
-  bottom: 30px;
-  height: calc(100vh - 60px);
-  z-index: 666;
+  max-width: 960px;
 }
 
 .customhr {
   height: 1px; 
   background-color: #232323; 
-  margin: 60px 0 30px 0;
+  margin: 15px 0 15px 15px ;
 }
 
 
@@ -64,10 +100,13 @@ body {
 .header {
   position: fixed;
   min-height: 28px;
+  max-width: 960px;
+
 }
 
 .headerlogo {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
+  padding-left: 30px;
 }
 
 .description {
@@ -79,25 +118,27 @@ body {
 /* Typography */
 h1 {
   font-family: 'SuisseWorks-Medium', Georgia, serif;
-  font-size:36px;
-  letter-spacing: -0.1rem;
+  font-size:32px;
+  letter-spacing: -0.125rem;
   line-height: 1em;
   text-transform: uppercase;
   margin-top: 10px;
-  text-align: center;
+  text-align: left;
 }
 
 h2 {
   font-size: 36px;
   letter-spacing: -0.08rem;
   padding-top: 30px;
+  text-align: center;
+
 }
 
 h3 {
-  font-family: 'SuisseWorks-Bold', Georgia, serif;
+  font-family: 'SuisseWorks-medium', Georgia, serif;
   font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: -0.025rem;
+  letter-spacing: 0.01rem;
 }
 
 h4 {
@@ -107,9 +148,10 @@ h4 {
 }
 
 p {
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.2;
-  text-align: center;
+  letter-spacing: -0.01rem;
+  text-align: left;
 }
 
 /* Links */
@@ -134,29 +176,23 @@ p {
 
 .eventblock {
   color: #232323;
-  margin: 15px 0 15px;
+  margin: 15px 15px 15px 30px;
 }
 
 .eventblock-active {
   color: #232323;
 }
 
-
-
 /* Event date styles */
 
-.event-title {
-  padding-bottom: 30px;
-}
 
 #imgreference {
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 /* Key image styles */
 .carousel-item img {
   max-width: 100%;
-  max-height: 33vh;
   margin: 0 auto; /* Center the image horizontally */
 }
 
@@ -186,7 +222,7 @@ p {
 }
 
 #dateText {
-  font-family: 'SuisseWorks-Bold', Georgia, serif;
+  font-family: 'SuisseWorks-medium', Georgia, serif;
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: -0.025rem;
@@ -206,7 +242,7 @@ p {
 }
 
 .btn-custom {
-  font-family: 'SuisseWorks-Bold', Georgia, serif;
+  font-family: 'SuisseWorks-medium', Georgia, serif;
   font-size: 42px;
   letter-spacing: -0.08rem;
   color: #232323;
@@ -248,16 +284,50 @@ p {
   height: 0px;
 }
 
+
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
 
-  .vertical-line {
-    display: none;
+  .logoleft img {
+    max-height: 35px; /* Set the maximum height for the SVG */
+    display: block; /* Make the image a block element */
+    margin-left: auto; /* Center the image horizontally */
+    margin-right: auto; /* Center the image horizontally */
 }
 
-  body {
-    text-align: center;
+#toggleButton {
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: filter 0.2s ease;
+  padding-top: 10px;
+  margin-left: auto; /* Push the button to the right */
+  margin-right: auto; /* Push the button to the left */
+  display: block; /* Make the button a block element to center it */
+}
+
+.headerlogo {
+  padding-left: 15px;
+}
+
+.eventblock {
+ 
+  margin: 0px;
+}
+
+  .bordered-right {
+    display: none;
   }
+  
+  .bordered-left {
+    display: none;
+  }
+
+
 
   h1 {
     font-size:24px;
@@ -274,26 +344,36 @@ p {
 
   h4 {
     text-align: center;
+
   }
 
   #top-margin {
-    height: 25vh;
+    height: 0;
   }
+
+
 
   .header {
     background-color: #fcfcfc;
     top: 0;
-    padding: 15px;
+    padding: 10px 10px 0 10px;
     z-index: 1000;
   }
 
+  .fixed-dropdown {
+    display: flex;
+    align-items: center; /* Center items vertically */
+}
+
+
+  
   .fixed-dropdown {
     position: fixed;
     top: auto;
     bottom: 0;
     transform: translateY(0%);
     z-index: 998;
-    background-color: #fcfcfc;
+    background-color: #ffffff;
   }
 
   .dropdown-menu {
@@ -301,10 +381,17 @@ p {
   }
 
   .btn-custom {
+    font-size:24px;
     padding-left: 0;
   }
 
+  #dateText {
+    font-size:23px;
+  }
+
 /* 30px to 15px */
+
+
   .event-title {
     padding-bottom: 15px;
   }
@@ -317,16 +404,8 @@ p {
     margin-top: 15px;
   }
 
-  .customhr {
-    margin: 15px 0 15px 0;
-  }
-  
 
-  /* Disable tapping on mobile devices */
-  #dropdownMenuButton,
-  #dateText {
-    pointer-events: none;
-  }
+
 
   #bottom-margin {
     height: 200px;
