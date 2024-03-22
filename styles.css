@@ -290,7 +290,7 @@ p {
 @media (max-width: 768px) {
 
   .logoleft img {
-    max-height: 35px; /* Set the maximum height for the SVG */
+    max-height: 25px; /* Set the maximum height for the SVG */
     display: block; /* Make the image a block element */
     margin-left: auto; /* Center the image horizontally */
     margin-right: auto; /* Center the image horizontally */
@@ -305,9 +305,9 @@ p {
   text-decoration: none;
   transition: filter 0.2s ease;
   padding-top: 10px;
-  margin-left: auto; /* Push the button to the right */
-  margin-right: auto; /* Push the button to the left */
-  display: block; /* Make the button a block element to center it */
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .headerlogo {
@@ -358,22 +358,23 @@ p {
     top: 0;
     padding: 10px 10px 0 10px;
     z-index: 1000;
+    border-bottom: 1px solid #232323;
+
   }
-
-  .fixed-dropdown {
-    display: flex;
-    align-items: center; /* Center items vertically */
-}
-
 
   
   .fixed-dropdown {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
     position: fixed;
+    padding-bottom: 15px;
+    z-index: 998;
+    background-color: #ffffff;
     top: auto;
     bottom: 0;
     transform: translateY(0%);
-    z-index: 998;
-    background-color: #ffffff;
+    border-top: 1px solid #232323;
   }
 
   .dropdown-menu {
