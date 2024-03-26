@@ -117,11 +117,10 @@ body {
 
 /* Typography */
 h1 {
-  font-family: 'SuisseWorks-Medium', Georgia, serif;
-  font-size:32px;
-  letter-spacing: -0.125rem;
+  font-family: 'SuisseWorks-Bold', Georgia, serif;
+  font-size:28px;
+  letter-spacing: -0.075rem;
   line-height: 1em;
-  text-transform: uppercase;
   margin-top: 10px;
   text-align: left;
 }
@@ -135,10 +134,12 @@ h2 {
 }
 
 h3 {
-  font-family: 'SuisseWorks-medium', Georgia, serif;
-  font-size: 13px;
+  font-family: 'SuisseWorks-Regular', Georgia, serif;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.01rem;
+  color: #505050;
+
 }
 
 h4 {
@@ -193,6 +194,7 @@ p {
 /* Key image styles */
 .carousel-item img {
   max-width: 100%;
+  max-height: 325px;
   margin: 0 auto; /* Center the image horizontally */
 }
 
