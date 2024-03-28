@@ -9,7 +9,6 @@ document.getElementById('dateText').addEventListener('click', function() {
     }
 });
 
-
 document.addEventListener("DOMContentLoaded", function() {
     const eventBlocks = document.querySelectorAll('.eventblock');
     let activeEventBlock = null; // Track the currently active event block
@@ -29,9 +28,11 @@ document.addEventListener("DOMContentLoaded", function() {
         const logoleft = document.querySelector('.logoleft');
         logoleft.style.opacity = '0';
     });
+
     const firstEventBlock = eventBlocks[0];
     const dateText = firstEventBlock.querySelector('.date').textContent;
     document.getElementById('dateText').textContent = dateText;
+
     const firstYear = eventBlocks[0].id.replace('event-', '');
     document.getElementById('dropdownMenuButton').textContent = firstYear;
 
@@ -55,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 visibleEventBlock = eventBlock;
             }
         });
-    
+
         // Toggle active state for event blocks and update opacity
         eventBlocks.forEach(function(eventBlock) {
             if (eventBlock === visibleEventBlock) {
@@ -68,14 +69,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 eventBlock.style.opacity = 0.25; // Set opacity to 33% for inactive event blocks
             }
         });
-    
+
         if (visibleEventBlock) {
             const date = visibleEventBlock.querySelector('.date').textContent;
             document.getElementById('dateText').textContent = date;
-    
+
             const yearId = visibleEventBlock.id.replace('event-', '');
             document.getElementById('dropdownMenuButton').textContent = yearId;
-    
+
             if (activeEventBlock && activeEventBlock !== visibleEventBlock) {
                 activeEventBlock.classList.remove('eventblock-active');
                 activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
@@ -89,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         } else {
             document.getElementById('dateText').textContent = '';
-    
+
             if (activeEventBlock) {
                 activeEventBlock.classList.remove('eventblock-active');
                 activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
@@ -99,66 +100,63 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
     }
-    
-        const dropdownItems = document.querySelectorAll('.dropdown-item-custom');
-        const dropdownMenuButton = document.getElementById('dropdownMenuButton');
-        const dateTextSpan = document.getElementById('dateText');
 
-        dropdownItems.forEach(item => {
-            item.addEventListener("mouseover", function() {
-                dropdownMenuButton.textContent = this.innerText;
-            });
+    const dropdownItems = document.querySelectorAll('.dropdown-item-custom');
+    const dropdownMenuButton = document.getElementById('dropdownMenuButton');
+    const dateTextSpan = document.getElementById('dateText');
+
+    dropdownItems.forEach(item => {
+        item.addEventListener("mouseover", function() {
+            dropdownMenuButton.textContent = this.innerText;
         });
-
-        document.body.addEventListener('click', function(event) {
-            const dropdownMenu = document.querySelector('.dropdown-menu');
-            if (event.target !== dropdownMenu && !dropdownMenu.contains(event.target) && event.target !== dateTextSpan) {
-                dropdownMenu.style.display = 'none';
-                dateTextSpan.style.display = ''; // Show date text when dropdown menu is closed
-            }
-        });
-
-        dropdownMenuButton.addEventListener('click', function() {
-            const dropdownMenu = document.querySelector('.dropdown-menu');
-            if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
-                dropdownMenu.style.display = 'block';
-                dateTextSpan.style.display = 'none'; // Hide date text when dropdown menu is open
-            } else {
-                dropdownMenu.style.display = 'none';
-                dateTextSpan.style.display = ''; // Show date text when dropdown menu is closed
-            }
-        });
-
-        const aproposButton = document.getElementById('toggleButton');
-        const aproposContent = document.getElementById('info');
-
-        aproposButton.addEventListener('click', toggleDropdown);
-
     });
 
-    function toggleDropdown() {
-        const aproposContent = document.getElementById('info');
-        aproposContent.classList.toggle('d-none');
-        const buttonText = document.getElementById('toggleButton').textContent;
-        document.getElementById('toggleButton').textContent = buttonText === 'fermer' ? 'à propos' : 'fermer';
-    }
-
-    function toggleDropdown(event) {
-        const aproposContent = document.getElementById('info');
-        const buttonText = document.getElementById('toggleButton').querySelector('h3');
-        
-        if (aproposContent.style.display === 'none' || aproposContent.style.display === '') {
-            aproposContent.style.display = 'block';
-            buttonText.textContent = 'fermer';
-        } else {
-            aproposContent.style.display = 'none';
-            buttonText.textContent = 'à propos';
+    document.body.addEventListener('click', function(event) {
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+        if (event.target !== dropdownMenu && !dropdownMenu.contains(event.target) && event.target !== dateTextSpan) {
+            dropdownMenu.style.display = 'none';
+            dateTextSpan.style.display = ''; // Show date text when dropdown menu is closed
         }
-        event.stopPropagation();
-    }
-    
+    });
+
+    dropdownMenuButton.addEventListener('click', function() {
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+        if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
+            dropdownMenu.style.display = 'block';
+            dateTextSpan.style.display = 'none'; // Hide date text when dropdown menu is open
+        } else {
+            dropdownMenu.style.display = 'none';
+            dateTextSpan.style.display = ''; // Show date text when dropdown menu is closed
+        }
+    });
+
     const aproposButton = document.getElementById('toggleButton');
     aproposButton.addEventListener('click', toggleDropdown);
+});
+
+function toggleDropdown() {
+    const aproposContent = document.getElementById('info');
+    aproposContent.classList.toggle('d-none');
+    const buttonText = document.getElementById('toggleButton').textContent;
+    document.getElementById('toggleButton').textContent = buttonText === 'fermer' ? 'à propos' : 'fermer';
+}
+
+function toggleDropdown(event) {
+    const aproposContent = document.getElementById('info');
+    const buttonText = document.getElementById('toggleButton').querySelector('h3');
+
+    if (aproposContent.style.display === 'none' || aproposContent.style.display === '') {
+        aproposContent.style.display = 'block';
+        buttonText.textContent = 'fermer';
+    } else {
+        aproposContent.style.display = 'none';
+        buttonText.textContent = 'à propos';
+    }
+    event.stopPropagation();
+}
+
+const aproposButton = document.getElementById('toggleButton');
+aproposButton.addEventListener('click', toggleDropdown);
 
 // Get the elements
 const headerLogo = document.querySelector('.headerlogo');
@@ -200,7 +198,6 @@ function fadeOut() {
     }
 }
 
-
 // Carousel
 document.addEventListener("DOMContentLoaded", function() {
     const eventBlocks = document.querySelectorAll('.eventblock');
@@ -232,6 +229,14 @@ document.addEventListener("DOMContentLoaded", function() {
             const activeItem = eventBlock.querySelector('.carousel-item.active img');
             const altText = activeItem.getAttribute('alt');
             imgreferenceSpan.textContent = altText;
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.body.addEventListener('touchend', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
         }
     });
 });
