@@ -249,13 +249,15 @@ p {
 }
 
 .dropdown-item-custom {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
+  font-family: 'SuisseWorks-Medium', Georgia, serif;
+  font-size: 14px;
+  letter-spacing: -0.01rem;
+  padding-left: 20px;
 }
 
 .dropdown-menu {
-  letter-spacing: 0.2rem;
+  background-color: #fcfcfc;
+  border: none;
 }
 
 .dropdown-item-custom:hover,
