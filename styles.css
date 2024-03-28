@@ -109,7 +109,7 @@ body {
 
 /* Typography */
 h1 {
-  font-family: 'SuisseWorks-Bold', Georgia, serif;
+  font-family: 'SuisseWorks-Medium', Georgia, serif;
   font-size:28px;
   letter-spacing: -0.075rem;
   line-height: 1em;
@@ -118,7 +118,8 @@ h1 {
 }
 
 h2 {
-  font-size: 36px;
+
+  font-size: 24px;
   letter-spacing: -0.08rem;
   padding-top: 30px;
   text-align: center;
