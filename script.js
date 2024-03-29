@@ -233,10 +233,53 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.body.addEventListener('touchend', function(e) {
-        if (e.target.tagName === 'IMG') {
-            e.preventDefault();
+
+
+
+// Check if the screen width is less than or equal to 768px (typical for mobile devices)
+if (window.innerWidth <= 768) {
+    // Get the elements
+    const headerLogo = document.querySelector('.headerlogo');
+    const logoleft = document.querySelector('.logoleft');
+    const fixedDropdown = document.querySelector('.fixed-dropdown');
+
+    let opacity = 0; // Initial opacity value
+
+    // Set up the Intersection Observer
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                // If the headerlogo is out of view, fade in the header container and fixed-dropdown
+                fadeIn();
+            } else {
+                // If the headerlogo is in view, fade out the header container and fixed-dropdown
+                fadeOut();
+            }
+        });
+    }, { threshold: 0 });
+
+    // Observe the headerLogo
+    observer.observe(headerLogo);
+
+    function fadeIn() {
+        if (opacity < 1) {
+            opacity += 0.2; // Adjust the increment value as needed for smoother or faster animation
+            logoleft.style.opacity = opacity;
+            logoleft.style.transition = 'opacity 0.25s';
+            fixedDropdown.style.opacity = opacity;
+            fixedDropdown.style.transition = 'opacity 0.25s';
+            requestAnimationFrame(fadeIn);
         }
-    });
-});
+    }
+
+    function fadeOut() {
+        if (opacity > 0) {
+            opacity -= 0.2; // Adjust the increment value as needed for smoother or faster animation
+            logoleft.style.opacity = opacity;
+            logoleft.style.transition = 'opacity 0.25s';
+            fixedDropdown.style.opacity = opacity;
+            fixedDropdown.style.transition = 'opacity 0.25s';
+            requestAnimationFrame(fadeOut);
+        }
+    }
+}

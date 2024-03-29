@@ -302,11 +302,17 @@ p {
 
   .headerlogo {
     padding-left: 15px;
+    margin-bottom: 25vh;
   }
 
   .eventblock {
     margin: 0px;
   }
+
+  .fixed-dropdown {
+    opacity: 0;
+}
+
 
   .bordered-right {
     display: none;
@@ -317,24 +323,30 @@ p {
   }
 
   h1 {
-    font-size:24px;
-    margin: 0;
+    display: none;
   }
 
   h2 {
     font-size:20px;
+    text-transform: up;
   }
 
   h3 {
     font-size:10px;
+    text-align: center;
+
   }
 
   h4 {
     text-align: center;
   }
 
+  p {
+    display: none;
+  }
+
   #top-margin {
-    height: 0;
+    height: 25vh;
   }
 
   .header {
@@ -350,26 +362,39 @@ p {
     align-items: center; 
     justify-content: center;
     position: fixed;
-    padding-bottom: 15px;
     z-index: 998;
-    background-color: #ffffff;
-    top: auto;
-    bottom: 0;
-    transform: translateY(0%);
-    border-top: 1px solid #232323;
+    top: 85px;
+    border-bottom: 1px solid #232323;
+    background-color: #fcfcfc;
   }
 
   .dropdown-menu {
-    margin-top: 0;
+    margin-top: calc(50vh - 60%);
+    left: 50%;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .dropdown-item-custom {
+    font-family: 'SuisseWorks-Medium', Georgia, serif;
+    font-size: 14px;
+    letter-spacing: -0.01rem;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
   }
 
   .btn-custom {
-    font-size:24px;
+    font-size:15px;
     padding-left: 0;
   }
 
+  .customhr { 
+    margin: 15px 0 15px 0 ;
+  }
+
   #dateText {
-    font-size:23px;
+    font-size:14px;
   }
 
   .event-title {
