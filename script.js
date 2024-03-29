@@ -243,7 +243,7 @@ if (window.innerWidth <= 768) {
     const logoleft = document.querySelector('.logoleft');
     const fixedDropdown = document.querySelector('.fixed-dropdown');
 
-    let opacity = 0; // Initial opacity value
+    let opacity = 0.25; // Initial opacity value
 
     // Check scroll position and update opacity
     window.addEventListener('scroll', function() {
@@ -277,4 +277,3 @@ if (window.innerWidth <= 768) {
         }
     }
 }
-
