@@ -239,44 +239,40 @@ document.addEventListener("DOMContentLoaded", function() {
 // Check if the screen width is less than or equal to 768px (typical for mobile devices)
 if (window.innerWidth <= 768) {
     const headerLogo = document.querySelector('.headerlogo');
-    const logoleft = document.querySelector('.logoleft');
-    const fixedDropdown = document.querySelector('.fixed-dropdown');
-    const transitionDuration = 250; // 0.25 seconds
+    const headerContainer = document.querySelector('.logoleft');
 
     let opacity = 0; // Initial opacity value
 
-    // Set transition property once outside the scroll event
-    logoleft.style.transition = `opacity ${transitionDuration}ms`;
-    fixedDropdown.style.transition = `opacity ${transitionDuration}ms`;
+    // Set up the Intersection Observer
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                // If the headerlogo is out of view, fade in the header container
+                fadeIn();
+            } else {
+                // If the headerlogo is in view, fade out the header container
+                fadeOut();
+            }
+        });
+    }, { threshold: 0 });
 
-    // Check scroll position and update opacity
-    window.addEventListener('scroll', function() {
-        const headerBottom = headerLogo.getBoundingClientRect().bottom;
-        if (headerBottom <= 0) {
-            // Header logo is out of view, fade in the header container and fixed-dropdown
-            fadeIn();
-        } else {
-            // Header logo is in view, fade out the header container and fixed-dropdown
-            fadeOut();
-        }
-    });
+    // Observe the headerLogo
+    observer.observe(headerLogo);
 
     function fadeIn() {
         if (opacity < 1) {
-            const deltaTime = Math.min(1, (Date.now() - lastFrameTime) / transitionDuration);
-            opacity += deltaTime;
-            logoleft.style.opacity = opacity;
-            fixedDropdown.style.opacity = opacity;
+            opacity += 0.05; // Adjust the increment value as needed for smoother or faster animation
+            headerContainer.style.opacity = opacity;
+            headerContainer.style.transition = 'opacity 0.25s';
             requestAnimationFrame(fadeIn);
         }
     }
 
     function fadeOut() {
         if (opacity > 0) {
-            const deltaTime = Math.min(1, (Date.now() - lastFrameTime) / transitionDuration);
-            opacity -= deltaTime;
-            logoleft.style.opacity = opacity;
-            fixedDropdown.style.opacity = opacity;
+            opacity -= 0.05; // Adjust the increment value as needed for smoother or faster animation
+            headerContainer.style.opacity = opacity;
+            headerContainer.style.transition = 'opacity 0.25s';
             requestAnimationFrame(fadeOut);
         }
     }
