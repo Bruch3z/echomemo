@@ -238,12 +238,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Check if the screen width is less than or equal to 768px (typical for mobile devices)
 if (window.innerWidth <= 768) {
-    // Get the elements
     const headerLogo = document.querySelector('.headerlogo');
     const logoleft = document.querySelector('.logoleft');
     const fixedDropdown = document.querySelector('.fixed-dropdown');
+    const transitionDuration = 250; // 0.25 seconds
 
-    let opacity = 0.25; // Initial opacity value
+    let opacity = 0; // Initial opacity value
+
+    // Set transition property once outside the scroll event
+    logoleft.style.transition = `opacity ${transitionDuration}ms`;
+    fixedDropdown.style.transition = `opacity ${transitionDuration}ms`;
 
     // Check scroll position and update opacity
     window.addEventListener('scroll', function() {
@@ -259,21 +263,21 @@ if (window.innerWidth <= 768) {
 
     function fadeIn() {
         if (opacity < 1) {
-            opacity += 0.05; // Adjust the increment value as needed for smoother or faster animation
+            const deltaTime = Math.min(1, (Date.now() - lastFrameTime) / transitionDuration);
+            opacity += deltaTime;
             logoleft.style.opacity = opacity;
-            logoleft.style.transition = 'opacity 0.25s';
             fixedDropdown.style.opacity = opacity;
-            fixedDropdown.style.transition = 'opacity 0.25s';
+            requestAnimationFrame(fadeIn);
         }
     }
 
     function fadeOut() {
         if (opacity > 0) {
-            opacity -= 0.05; // Adjust the increment value as needed for smoother or faster animation
+            const deltaTime = Math.min(1, (Date.now() - lastFrameTime) / transitionDuration);
+            opacity -= deltaTime;
             logoleft.style.opacity = opacity;
-            logoleft.style.transition = 'opacity 0.25s';
             fixedDropdown.style.opacity = opacity;
-            fixedDropdown.style.transition = 'opacity 0.25s';
+            requestAnimationFrame(fadeOut);
         }
     }
 }
