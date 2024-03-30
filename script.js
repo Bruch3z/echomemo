@@ -236,10 +236,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-// Check if the screen width is less than or equal to 768px (typical for mobile devices)
 if (window.innerWidth <= 768) {
     const headerLogo = document.querySelector('.headerlogo');
-    const headerContainer = document.querySelector('.logoleft');
+    const logoleft = document.querySelector('.logoleft');
+    const fixedDropdown = document.querySelector('.fixed-dropdown');
 
     let opacity = 0; // Initial opacity value
 
@@ -247,10 +247,10 @@ if (window.innerWidth <= 768) {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) {
-                // If the headerlogo is out of view, fade in the header container
+                // If the headerlogo is out of view, fade in the header container and fixed-dropdown
                 fadeIn();
             } else {
-                // If the headerlogo is in view, fade out the header container
+                // If the headerlogo is in view, fade out the header container and fixed-dropdown
                 fadeOut();
             }
         });
@@ -262,8 +262,10 @@ if (window.innerWidth <= 768) {
     function fadeIn() {
         if (opacity < 1) {
             opacity += 0.05; // Adjust the increment value as needed for smoother or faster animation
-            headerContainer.style.opacity = opacity;
-            headerContainer.style.transition = 'opacity 0.25s';
+            logoleft.style.opacity = opacity;
+            fixedDropdown.style.opacity = opacity;
+            logoleft.style.transition = 'opacity 0.25s';
+            fixedDropdown.style.transition = 'opacity 0.25s';
             requestAnimationFrame(fadeIn);
         }
     }
@@ -271,8 +273,10 @@ if (window.innerWidth <= 768) {
     function fadeOut() {
         if (opacity > 0) {
             opacity -= 0.05; // Adjust the increment value as needed for smoother or faster animation
-            headerContainer.style.opacity = opacity;
-            headerContainer.style.transition = 'opacity 0.25s';
+            logoleft.style.opacity = opacity;
+            fixedDropdown.style.opacity = opacity;
+            logoleft.style.transition = 'opacity 0.25s';
+            fixedDropdown.style.transition = 'opacity 0.25s';
             requestAnimationFrame(fadeOut);
         }
     }
