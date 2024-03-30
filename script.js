@@ -241,7 +241,6 @@ if (window.innerWidth <= 768) {
     const logoleft = document.querySelector('.logoleft');
     const fixedDropdown = document.querySelector('.fixed-dropdown');
 
-    let opacity = 0; // Initial opacity value
 
     // Set up the Intersection Observer
     const observer = new IntersectionObserver(entries => {
