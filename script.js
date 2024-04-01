@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-if (document.documentElement.clientWidth <= 768) {
+if (window.matchMedia("(max-width: 768px)").matches) {
     const headerLogo = document.querySelector('.headerlogo');
     const logoleft = document.querySelector('.logoleft');
     const fixedDropdown = document.querySelector('.fixed-dropdown');
