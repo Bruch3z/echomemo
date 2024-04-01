@@ -158,6 +158,41 @@ function toggleDropdown(event) {
 const aproposButton = document.getElementById('toggleButton');
 aproposButton.addEventListener('click', toggleDropdown);
 
+// Carousel
+document.addEventListener("DOMContentLoaded", function() {
+    const eventBlocks = document.querySelectorAll('.eventblock');
+
+    eventBlocks.forEach(function(eventBlock) {
+        const imageCarousel = eventBlock.querySelector('.carousel');
+        const imgreferenceSpan = eventBlock.querySelector('#imgreference');
+
+        const images = imageCarousel.querySelectorAll('.carousel-item');
+        let currentIndex = 0;
+
+        images[currentIndex].classList.add('active');
+        updateReference(); // Call updateReference on page load
+
+        images.forEach(function(image) {
+            image.addEventListener('click', function() {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+                updateReference();
+            });
+        });
+
+        imageCarousel.addEventListener('slid.bs.carousel', function() {
+            updateReference();
+        });
+
+        function updateReference() {
+            const activeItem = eventBlock.querySelector('.carousel-item.active img');
+            const altText = activeItem.getAttribute('alt');
+            imgreferenceSpan.textContent = altText;
+        }
+    });
+});
+
 // Get the elements
 const headerLogo = document.querySelector('.headerlogo');
 const headerContainer = document.querySelector('.logoleft');
@@ -198,45 +233,8 @@ function fadeOut() {
     }
 }
 
-// Carousel
-document.addEventListener("DOMContentLoaded", function() {
-    const eventBlocks = document.querySelectorAll('.eventblock');
 
-    eventBlocks.forEach(function(eventBlock) {
-        const imageCarousel = eventBlock.querySelector('.carousel');
-        const imgreferenceSpan = eventBlock.querySelector('#imgreference');
-
-        const images = imageCarousel.querySelectorAll('.carousel-item');
-        let currentIndex = 0;
-
-        images[currentIndex].classList.add('active');
-        updateReference(); // Call updateReference on page load
-
-        images.forEach(function(image) {
-            image.addEventListener('click', function() {
-                images[currentIndex].classList.remove('active');
-                currentIndex = (currentIndex + 1) % images.length;
-                images[currentIndex].classList.add('active');
-                updateReference();
-            });
-        });
-
-        imageCarousel.addEventListener('slid.bs.carousel', function() {
-            updateReference();
-        });
-
-        function updateReference() {
-            const activeItem = eventBlock.querySelector('.carousel-item.active img');
-            const altText = activeItem.getAttribute('alt');
-            imgreferenceSpan.textContent = altText;
-        }
-    });
-});
-
-
-
-
-// Wrap the mobile-specific functionality in a function
+// MOBILE
 function applyMobileSpecificBehavior() {
     const headerLogo = document.querySelector('.headerlogo');
     const logoleft = document.querySelector('.logoleft');
@@ -262,25 +260,26 @@ function applyMobileSpecificBehavior() {
 
     function fadeIn() {
         if (opacity < 1) {
-            opacity += 0.05; // Adjust the increment value as needed for smoother or faster animation
+            opacity += 0.2; // Adjust the increment value as needed for smoother or faster animation
             logoleft.style.opacity = opacity;
             fixedDropdown.style.opacity = opacity;
-            logoleft.style.transition = 'opacity 0.25s';
-            fixedDropdown.style.transition = 'opacity 0.25s';
+            logoleft.style.transform = `translateY(${(1-opacity)*-100}%)`;
+            fixedDropdown.style.transform = `translateY(${(1-opacity)*-100}%)`;
             window.requestAnimationFrame(fadeIn); // Use window.requestAnimationFrame
         }
     }
-
+    
     function fadeOut() {
         if (opacity > 0) {
-            opacity -= 0.05; // Adjust the increment value as needed for smoother or faster animation
+            opacity -= 0.2; // Adjust the increment value as needed for smoother or faster animation
             logoleft.style.opacity = opacity;
             fixedDropdown.style.opacity = opacity;
-            logoleft.style.transition = 'opacity 0.25s';
-            fixedDropdown.style.transition = 'opacity 0.25s';
+            logoleft.style.transform = `translateY(${(1-opacity)*-100}%)`;
+            fixedDropdown.style.transform = `translateY(${(1-opacity)*-100}%)`;
             window.requestAnimationFrame(fadeOut); // Use window.requestAnimationFrame
         }
     }
+    
 }
 
 // Check if the device is mobile and apply the behavior if true
