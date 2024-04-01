@@ -56,50 +56,40 @@ document.addEventListener("DOMContentLoaded", function() {
                 visibleEventBlock = eventBlock;
             }
         });
-
-        // Toggle active state for event blocks and update opacity
+    
+        // Toggle active state for event blocks
         eventBlocks.forEach(function(eventBlock) {
             if (eventBlock === visibleEventBlock) {
                 if (!eventBlock.classList.contains('eventblock-active')) {
                     eventBlock.classList.add('eventblock-active');
                 }
-                eventBlock.style.opacity = 1; // Set opacity to 100% for active event blocks
             } else {
                 eventBlock.classList.remove('eventblock-active');
-                eventBlock.style.opacity = 0.25; // Set opacity to 33% for inactive event blocks
             }
         });
-
+    
         if (visibleEventBlock) {
             const date = visibleEventBlock.querySelector('.date').textContent;
             document.getElementById('dateText').textContent = date;
-
+    
             const yearId = visibleEventBlock.id.replace('event-', '');
             document.getElementById('dropdownMenuButton').textContent = yearId;
-
+    
             if (activeEventBlock && activeEventBlock !== visibleEventBlock) {
                 activeEventBlock.classList.remove('eventblock-active');
-                activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
-                    hr.style.opacity = '0'; // Hide <hr> of previously active block
-                });
             }
             activeEventBlock = visibleEventBlock;
             activeEventBlock.classList.add('eventblock-active');
-            activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
-                hr.style.opacity = '1'; // Show <hr> of currently active block
-            });
         } else {
             document.getElementById('dateText').textContent = '';
-
+    
             if (activeEventBlock) {
                 activeEventBlock.classList.remove('eventblock-active');
-                activeEventBlock.querySelectorAll('.reference hr').forEach(hr => {
-                    hr.style.opacity = '0'; // Hide <hr> if no block is active
-                });
                 activeEventBlock = null;
             }
         }
     }
+    
 
     const dropdownItems = document.querySelectorAll('.dropdown-item-custom');
     const dropdownMenuButton = document.getElementById('dropdownMenuButton');
