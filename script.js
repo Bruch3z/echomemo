@@ -236,7 +236,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-if (window.matchMedia("(max-width: 768px)").matches) {
+// Wrap the mobile-specific functionality in a function
+function applyMobileSpecificBehavior() {
     const headerLogo = document.querySelector('.headerlogo');
     const logoleft = document.querySelector('.logoleft');
     const fixedDropdown = document.querySelector('.fixed-dropdown');
@@ -280,4 +281,9 @@ if (window.matchMedia("(max-width: 768px)").matches) {
             window.requestAnimationFrame(fadeOut); // Use window.requestAnimationFrame
         }
     }
+}
+
+// Check if the device is mobile and apply the behavior if true
+if (window.matchMedia("(max-width: 768px)").matches) {
+    applyMobileSpecificBehavior();
 }
