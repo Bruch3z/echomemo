@@ -371,7 +371,7 @@ p {
   .fixed-dropdown {
     position: fixed;
     z-index: 998;
-    top: 67px;
+    top: 66px;
     border-bottom: 1px solid #232323;
     background-color: #fcfcfc;
   }
@@ -388,7 +388,7 @@ p {
 
 
   .btn-custom {
-    font-size:15px;
+    font-size:17px;
     padding-left: 0;
   }
 
@@ -397,7 +397,7 @@ p {
   }
 
   #dateText {
-    font-size:14px;
+    font-size:16px;
   }
 
   .event-title {
