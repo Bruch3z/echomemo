@@ -9,424 +9,147 @@
 }
 
 /* Fonts */
-@font-face {
-  font-family: 'SuisseWorks-Bold';
-  src: url('fonts/SuisseWorks-Bold.otf') format('opentype');
-  font-weight: bold;
-}
 
 @font-face {
-  font-family: 'SuisseWorks-Medium';
-  src: url('fonts/SuisseWorks-Medium.otf') format('opentype');
-  font-weight: medium;
-}
-
-@font-face {
-  font-family: 'SuisseWorks-Regular';
-  src: url('fonts/SuisseWorks-Regular.otf') format('opentype');
+  font-family: 'SelectricMono';
+  src: url('fonts/SelectricMono.otf') format('opentype');
   font-weight: normal;
 }
 
-
-/* vertical line */
-.father-div {
-  position: relative;
-}
-
-.bordered-right {
-  border-left: 1px solid black;
-  height: calc(100vh - 30px);
-  padding-top: 15px;
-  padding-bottom: 15px;
-  position: fixed;
-  width: calc(100% - 960px);
-  right: 0; 
-  z-index: 2;
-}
-
-.bordered-left {
-  border-left: 1px solid black;
-  height: calc(100vh - 30px);
-  padding-top: 15px 0 15px 0;
-  position: fixed;
-  z-index: 1;
-}
-
-.gradient {
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100vh;
-  display: none; /* Initially hide the gradient */
-}
-
-@media (min-width: 1290px) {
-  .gradient {
-    display: block; /* Show the gradient when screen width is over 1000px */
-    width: 25vw; /* Set the initial width relative to viewport width */
-    background: linear-gradient(to left, rgb(0, 183, 255), rgba(0, 0, 255, 0));
-  }
-}
 
 /* Body styles */
 body {
   overflow-x: hidden;
   overscroll-behavior-x: none;
-  font-family: 'SuisseWorks-Regular', Georgia, serif;
+  font-family: 'SelectricMono', Georgia, serif;
+  letter-spacing: -0.1rem;
+  line-height: 1.2;
   cursor: default;
   text-align: left;
   color: #232323;
-  background-color: #fcfcfc;
-  max-width: 960px;
 }
 
-.customhr {
-  height: 1px; 
-  background-color: #232323; 
-  margin: 15px 0 15px 15px ;
+.container {
+  max-width: 100%;
+  padding: 1em;
+  margin: 0;
 }
 
-#toggleButton,
-.fixed-dropdown {
-  cursor: pointer;
-}
-
-/* Header styles */
-.header {
-  position: fixed;
-  min-height: 28px;
-  max-width: 960px;
-  z-index: 1000;
-}
-
-.headerlogo {
-  margin-bottom: 0px;
-  padding-left: 30px;
-}
-
-.description {
-  padding-left: 15px;
-}
-
-/* Typography */
-h1 {
-  font-family: 'SuisseWorks-Medium', Georgia, serif;
-  font-size:28px;
-  letter-spacing: -0.075rem;
-  line-height: 1em;
-  margin-top: 10px;
-  text-align: left;
-}
-
-h2 {
-  font-size: 24px;
-  letter-spacing: -0.08rem;
-  padding-top: 30px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-h3 {
-  font-family: 'SuisseWorks-Regular', Georgia, serif;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: -0.01rem;
+.btn {
+  font-size: 2em;
   color: #232323;
+  padding: 0;
+  text-decoration: none;
 }
 
-h4 {
-  font-size: 13px;
-  line-height: 1.2;
-  text-align: left;
+.btn:hover {
+  color: #232323;
+  text-decoration: underline;
 }
 
-h5 {
-  font-family: 'SuisseWorks-Regular', Georgia, serif;
-  font-size: 12px;
-  letter-spacing: -0.04rem;
-  padding-top: 15;
-  text-transform: uppercase;
-  text-align: center;
+.btn:focus {
+  color: #232323;
+  text-decoration: underline;
 }
 
-p {
-  font-size: 12px;
-  line-height: 1.2;
-  letter-spacing: -0.01rem;
-  text-align: left;
-}
-
-/* Links */
 .plainlink {
   color: #232323;
   text-decoration: none;
 }
 
 .plainlink:hover {
-  color: #6a7682;
-  text-decoration: none;
-}
-
-.eventdate {
-  margin-bottom: 30px;
-}
-
-.eventref {
-  margin-top: 30px;
-}
-
-.eventblock {
   color: #232323;
-  margin: 15px 15px 15px 30px;
+  text-decoration: underline;
 }
 
-.eventblock-active {
-  color: #232323;
-}
 
-/* Event date styles */
 
-#imgreference {
-  margin-top: 15px;
-}
-
-/* Key image styles */
-.carousel-item img {
-  max-width: 100%;
-  max-height: 325px;
-  margin: 0 auto;
-  cursor: pointer;
-}
-
-.articleimg {
+.logo {
   width: 100%;
+  padding-bottom: 25px;
+}
+
+.description {
+  font-size: 2em;
+}
+
+/* A propos and contact */
+.cards {
+  margin-top: 25px;
+}
+
+.card {
+  background-color: none;
+  border: 0;
+
+}
+
+.card-body {
+  background-color: none;
+  border: 0;
+  padding: 0;
+}
+
+.card-header {
+  background-color: #ffffff;
+  border: 0;
+  padding: 0px;
+}
+
+
+
+/* image */
+.project {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: calc(100vh - 35px);
+}
+
+.project img {
+  max-width: 100%;
   height: auto;
 }
 
-/* A propos */
-#toggleButton {
-  color: inherit;
-  background-color: white;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding-left: 0;
-  transition: filter 0.2s ease;
+.imagecaption {
+  text-align: left;
+  max-width: 100%;
+  padding: 0;
+  margin-top: auto;
 }
 
 
-#toggleButton:hover {
-  color: #6a7682;
-}
-
-
-#info {
-  display: none;
-}
-
-#dateText {
-  font-family: 'SuisseWorks-medium', Georgia, serif;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: -0.025rem;
-}
-
-#dateText:hover {
-  color: #6a7682;
-}
-
-/* Dropdown styles */
-.fixed-dropdown {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 998;
-}
-
-.btn-custom {
-  font-family: 'SuisseWorks-medium', Georgia, serif;
-  font-size: 42px;
-  letter-spacing: -0.08rem;
+.imagelink {
   color: #232323;
-  text-transform: uppercase;
-  border-radius: 0;
-  left: 0;
-  padding-left: 0;
+  text-decoration: none;
 }
 
-.btn-custom:focus {
-  box-shadow: none;
+.imagelink:hover {
+  color: #232323;
+  text-decoration: underline;
 }
 
-.btn-custom:hover {
-  color: #6a7682;
+/* Typography */
+h6 {
+  font-family: 'SelectricMono', Georgia, serif;
+  font-size: 8px;
+  letter-spacing: -0.1rem;
+  padding-top: 15;
 }
 
-.dropdown-item-custom {
-  font-family: 'SuisseWorks-Medium', Georgia, serif;
-  font-size: 14px;
-  letter-spacing: -0.01rem;
-  padding-left: 24px;
+p {
+  margin-bottom: 5px;
 }
 
-.dropdown-menu {
-  background-color: #fcfcfc;
-  border: none;
-}
+@media (max-width: 767.98px) {
 
-.dropdown-item-custom:hover,
-.dropdown-item-custom:active {
-  background-color: #ffffff00;
-  color: #6a7682;
-}
-
-#bottom-margin {
-  height: 400px;
-}
-
-#top-margin {
-  height: 0px;
-}
-
-
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-
-  .logoleft img {
-    max-height: 25px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  #toggleButton {
-    color: inherit;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    text-decoration: none;
-    transition: filter 0.2s ease;
-    padding-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-  }
-
-  .headerlogo {
-    padding-left: 15px;
-    margin-bottom: 25vh;
-  }
-
-  .eventblock {
-    margin: 0px;
-  }
-
-  .fixed-dropdown {
-    opacity: 0;
-}
-
-
-  .bordered-right {
-    display: none;
-  }
-    
-  .bordered-left {
-    display: none;
-  }
-
-
-
-  h2 {
-    font-size:20px;
-    text-transform: up;
-  }
-
-  h3 {
-    font-size:10px;
-    text-align: left;
-
-  }
-
-  h4 {
-    text-align: center;
-  }
-
-  p {
-    display: none;
-  }
-
-  #top-margin {
-    height: 25vh;
-  }
-
-  .header {
-    background-color: #fcfcfc;
-    top: 0;
-    padding: 10px 10px 0 10px;
-    z-index: 1000;
-    border-bottom: 1px solid #232323;
-  }
-  
-  .fixed-dropdown {
-    position: fixed;
-    z-index: 998;
-    top: 66px;
-    border-bottom: 1px solid #232323;
-    background-color: #fcfcfc;
-  }
-
-
-
-  .dropdown-item-custom {
-    font-family: 'SuisseWorks-Medium', Georgia, serif;
-    letter-spacing: -0.01rem;
-    display: flex;
-    align-items: left;
-    padding-left: 15px;
-}
-
-
-  .btn-custom {
-    font-size:17px;
-    padding-left: 0;
-  }
-
-  .customhr { 
-    margin: 15px 0 15px 0 ;
-  }
-
-  #dateText {
-    font-size:16px;
-  }
-
-  .event-title {
-    padding-bottom: 15px;
-  }
-
-  .eventdate {
-    margin-bottom: 15px;
-  }
-  
-  .eventref {
-    margin-top: 15px;
-  }
-
-  #bottom-margin {
-    height: 200px;
-  }
-
-  .carousel-inner {
-    display: inline-block;
-  }
-
-  .carousel-item {
-    text-align: center;
-  }
-
-  .carousel-item img {
-    display: inline-block;
-    max-width: 100%;
+  .project {
     height: auto;
+    padding-top: 2em;
+  }
+  
+  .description {
+    font-size: 1em;
   }
 }
